@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'网站工具',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -16,18 +16,18 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'application.extensions.*',
+		'application.extensions.yii-debug-toolbar.*',
 	),
 
 	'modules'=>array(
-		// uncomment the following to enable the Gii tool
-		/*
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
-			'password'=>'Enter Your Password Here',
+			'password'=>'gii',
 		 	// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
-		*/
+		
 	),
 
 	// application components
@@ -67,16 +67,25 @@ return array(
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
+//				array(
+//					'class'=>'CFileLogRoute',
+//					'levels'=>'error, warning',
+//				),
+//				array(
+//					'class'=>'CWebLogRoute',
+//				),
 				array(
-					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
-				),
-				// uncomment the following to show log messages on web pages
-				/*
-				array(
-					'class'=>'CWebLogRoute',
-				),
-				*/
+	                'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+	                //If true, then after reloading the page will open the current panel
+	                'openLastPanel'=>true,
+	                // Access is restricted by default to the localhost
+	                //'ipFilters'=>array('127.0.0.1','192.168.1.*', 88.23.23.0/24),
+					//This is a list of paths to extra panels.
+//					'additionalPanels'=>array(
+//						'YiiDebugToolbarPanelExample', // add as last
+//						'prepend:YiiDebugToolbarPanelExample', // add as first
+//					),
+	            ),
 			),
 		),
 	),
@@ -85,6 +94,6 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'bsspirit@gmail.com',
 	),
 );
