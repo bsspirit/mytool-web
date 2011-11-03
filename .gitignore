@@ -1,0 +1,9 @@
+.buildpath
+.project
+.settings/*
+assets/*
+*.log
+**/*.log
+**/**/*.log
+**/**/**/*.log
+protected/runtime/*
