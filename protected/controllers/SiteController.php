@@ -2,6 +2,52 @@
 
 class SiteController extends Controller
 {
+	
+	/*
+	 * 加密
+	 */
+	public function actionEncrypt()
+	{
+		$k='';
+		$md5_32='';
+		$md5_16='';
+		$base64='';
+		$url_16='';
+		if(isset($_POST['k'])){
+			$k=$_POST['k'];
+			$md5_32 = md5($k);
+			$md5_16 = substr(md5($k),8,-8);
+			$base64 = base64_encode($k);
+			for ( $i = 0; $i < strlen($k); $i++ ) {
+				$url_16 .= '%'.base_convert(ord($k[$i]), 10, 16);
+			}
+		}
+		
+		$this->render('encrypt', array(
+			'md5_32'=>$md5_32,
+			'md5_16'=>$md5_16,
+			'base64'=>$base64,
+			'url_16'=>strtoupper($url_16),
+			'k'=>$k,
+		));
+	}
+	
+	/*
+	 * 解密算法
+	 */
+	public function actionDecrypt(){
+		$k='';
+		$md5='';
+		if(isset($_POST['md5'])){
+			$md5=$_POST['md5'];
+			$k=$md5;
+		}
+		$this->render('decrypt', array(
+			'md5'=>$md5,
+			'k'=>$k,
+		));
+	}
+	
 	/**
 	 * Declares class-based actions.
 	 */
