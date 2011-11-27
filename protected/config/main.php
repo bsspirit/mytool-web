@@ -1,10 +1,4 @@
 <?php
-
-// uncomment the following to define a path alias
-// Yii::setPathOfAlias('local','path/to/local-folder');
-
-// This is the main Web application configuration. Any writable
-// CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'网站工具',
@@ -36,8 +30,6 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
-		// uncomment the following to enable URLs in path-format
-		/*
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
@@ -46,22 +38,14 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		*/
 		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
-		// uncomment the following to use a MySQL database
-		/*
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=testdrive',
+			'connectionString' => 'mysql:host=localhost;dbname=webtool',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
+			'username' => 'webtool',
+			'password' => 'webtool',
 			'charset' => 'utf8',
 		),
-		*/
 		'errorHandler'=>array(
-			// use 'site/error' action to display errors
             'errorAction'=>'site/error',
         ),
 		'log'=>array(
@@ -74,18 +58,18 @@ return array(
 //				array(
 //					'class'=>'CWebLogRoute',
 //				),
-				array(
-	                'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
-	                //If true, then after reloading the page will open the current panel
-	                'openLastPanel'=>true,
-	                // Access is restricted by default to the localhost
-	                //'ipFilters'=>array('127.0.0.1','192.168.1.*', 88.23.23.0/24),
-					//This is a list of paths to extra panels.
-//					'additionalPanels'=>array(
-//						'YiiDebugToolbarPanelExample', // add as last
-//						'prepend:YiiDebugToolbarPanelExample', // add as first
-//					),
-	            ),
+//				array(
+//	                'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+//	                //If true, then after reloading the page will open the current panel
+//	                'openLastPanel'=>true,
+//	                // Access is restricted by default to the localhost
+//	                //'ipFilters'=>array('127.0.0.1','192.168.1.*', 88.23.23.0/24),
+//					//This is a list of paths to extra panels.
+////					'additionalPanels'=>array(
+////						'YiiDebugToolbarPanelExample', // add as last
+////						'prepend:YiiDebugToolbarPanelExample', // add as first
+////					),
+//	            ),
 			),
 		),
 	),
