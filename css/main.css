@@ -228,22 +228,22 @@ div.search-form
 	background: #80CFFF;
 }
 
-<<<<<<< HEAD
-.w400{width:400px;}
-div.title{width:100px;float:left;}
-=======
 /*************我的设置**********************/
 .l{float:left;}
 .r{float:right;}
 .c{clear:both;}
+.h{display:none;}
+.icon{width:16px;height:16px;}
 
 #navigator{text-align:center;margin:10px auto;}
-#navigator .nav{text-align:left;}
-#navigator .nav .icon{width:16px;height:16px;}
+#navigator .nav{text-align:left;margin:20px 0;}
 #navigator .nav h1{font: bold 14px Arial;color: #0066A4;}
 #navigator .nav ul{text-align:left;}
 #navigator .nav ul li{float: left;margin:15px;list-style: none outside none;}
 #navigator .nav .preview{width:180px;border: 1px solid #999;padding:5px;}
 #navigator .nav .info{text-align:left;}
 
->>>>>>> e99024c3b2e1e3af681ee270ec0a8ad5b2c1f691
+.form{margin:10px 5px;}
+.form .i_text{width:380px;url("img/bg-input.png") repeat-x scroll 0 -130px #FFFFFF;border: 1px solid #CCCCCC;}
+.form .i_select{width:150px;url("img/bg-input.png") repeat-x scroll 0 -130px #FFFFFF;border: 1px solid #CCCCCC;}
+.form .i_button{height:24px;color:#444444;font-size:12px;}
