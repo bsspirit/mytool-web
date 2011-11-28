@@ -11,7 +11,7 @@ insert into t_website(id,title,url,cid,image) values(6,"Localhost:网站工具",
 insert into t_website(id,title,url,cid,image) values(7,"皮皮书屋","www.ppurl.com",1,"/images/screen/ppurl.com.png");
 insert into t_website(id,title,url,cid,image) values(8,"WebQQ","web.qq.com",1,"/images/screen/web.qq.com.png");
 insert into t_website(id,title,url,cid,image,icon) values(9,"Mahout","mahout.apahce.org",1,"/images/screen/mahout.apache.org.png","/images/icon/mahout.apache.org.ico");
-insert into t_website(id,title,url,cid,image) values(10,"在线词典","dicn.cn",1,"/images/screen/dict.cn.png");
+insert into t_website(id,title,url,cid,image) values(10,"在线词典","dict.cn",1,"/images/screen/dict.cn.png");
 insert into t_website(id,title,url,cid,image) values(11,"GitHub","github.com",1,"/images/screen/github.com.png");
 
 
