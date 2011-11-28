@@ -1,12 +1,12 @@
 use webtool;
 
-insert into t_website(id,title,url,cid,image) values(1,"Google","www.google.com",1,"/images/404.png");
-insert into t_website(id,title,url,cid,image) values(2,"奥城兴业","www.ac-999.com",2,"/images/404.png");
-insert into t_website(id,title,url,cid,image) values(3,"龙仙山安吉白茶","www.100rmb.info",2,"/images/404.png");
+insert into t_website(id,title,url,cid,image,icon) values(1,"Google","www.google.com",1,"/images/screen/google.com.hk.png","/images/icon/google.com.hk.ico");
+insert into t_website(id,title,url,cid,image,icon) values(2,"奥城兴业","www.ac-999.com",2,"/images/screen/ac-999.com.png","/images/icon/ac-999.com.ico");
+insert into t_website(id,title,url,cid,image,icon) values(3,"龙仙山安吉白茶","www.100rmb.info",2,"/images/screen/100rmb.info.png","/images/icon/100rmb.info.ico");
 
-insert into t_website(id,title,url,cid,image) values(4,"Localhost:安吉白茶","loc.100rmb.info",3,"/images/404.png");
-insert into t_website(id,title,url,cid,image) values(5,"Localhost:奥城兴业","loc.ac-999.com",3,"/images/404.png");
-insert into t_website(id,title,url,cid,image) values(6,"Localhost:网站工具","loc.tao6s.com",3,"/images/404.png");
+insert into t_website(id,title,url,cid,image) values(4,"Localhost:安吉白茶","loc.100rmb.info",3,"/images/screen/loc.100rmb.info.png");
+insert into t_website(id,title,url,cid,image) values(5,"Localhost:奥城兴业","loc.ac-999.com",3,"/images/screen/loc.ac-999.com.png");
+insert into t_website(id,title,url,cid,image) values(6,"Localhost:网站工具","loc.tao6s.com",3,"/images/screen/loc.tao6s.com.png");
 
 insert into t_website_tag(wid,tag) values(1,"搜索引擎");
 insert into t_website_tag(wid,tag) values(2,"奥城兴业");
