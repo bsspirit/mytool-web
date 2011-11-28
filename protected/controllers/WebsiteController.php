@@ -56,6 +56,7 @@ class WebsiteController extends Controller
 			$line = array(
 				'id'=>$row['id'],
 				'name'=>$row['name'],
+				'seq'=>$row['seq'],
 				'pages'=>array()
 			);
 			array_push($j_cats, $line);

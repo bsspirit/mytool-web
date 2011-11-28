@@ -1,6 +1,6 @@
 function jsonpCallback(obj){
 
-	var navs='';
+	var navs=[];
 	$.each(obj,function(k,v){
 		var html = '<div class="nav">';
 		html +='<h1>'+v.name+'</h1>';
@@ -29,10 +29,14 @@ function jsonpCallback(obj){
 		html +='</ul>';
 		html +='<div class="c"></div>';
 		html +='</div>';
-		navs += html;
+		navs[v.seq-1] = html;
 	});
 	
-	$('#navigator').html(navs);
+	var content='';
+	$.each(navs,function(k,v){
+		content += v; 
+	});
+	$('#navigator').html(content);
 }
 
 function http_url(url){

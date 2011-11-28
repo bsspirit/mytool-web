@@ -21,7 +21,8 @@ CREATE TABLE t_website_tag(
 
 CREATE TABLE t_website_catalog(
 	id int primary key auto_increment,
-	name varchar(32) not null unique,	
+	name varchar(32) not null unique,
+	seq int not null default 0,
 	create_time TIMESTAMP default now()
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
