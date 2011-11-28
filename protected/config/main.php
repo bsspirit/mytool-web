@@ -39,17 +39,10 @@ return array(
 			),
 		),
 		'db'=>array(
-<<<<<<< HEAD
-			'connectionString' => 'mysql:host=localhost;dbname=mytool',
-			'emulatePrepare' => true,
-			'username' => 'mytool',
-			'password' => 'mytool',
-=======
 			'connectionString' => 'mysql:host=localhost;dbname=webtool',
 			'emulatePrepare' => true,
 			'username' => 'webtool',
 			'password' => 'webtool',
->>>>>>> e99024c3b2e1e3af681ee270ec0a8ad5b2c1f691
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(

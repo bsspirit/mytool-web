@@ -1,8 +1,8 @@
 use webtool;
 
-insert into t_website(id,url,cid,image) values(1,"www.google.com",1,"images/404.png");
-insert into t_website(id,url,cid,image) values(2,"www.ac-999.com",2,"images/404.png");
-insert into t_website(id,url,cid,image) values(3,"www.100rmb.info",2,"images/404.png");
+insert into t_website(id,title,url,cid,image) values(1,"Google","www.google.com",1,"/images/404.png");
+insert into t_website(id,title,url,cid,image) values(2,"奥城兴业","www.ac-999.com",2,"/images/404.png");
+insert into t_website(id,title,url,cid,image) values(3,"龙仙山安吉白茶","www.100rmb.info",2,"/images/404.png");
 
 insert into t_website_tag(wid,tag) values(1,"搜索引擎");
 insert into t_website_tag(wid,tag) values(2,"奥城兴业");

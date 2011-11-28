@@ -66,6 +66,8 @@ class WebsiteController extends Controller
 				'id'=>$row['id'],
 				'url'=>$row['url'],
 				'image'=>$row['image'],
+				'title'=>$row['title'],
+				'icon'=>$row['icon'],
 				'cid'=>$row['cid']
 			);
 			
@@ -75,8 +77,8 @@ class WebsiteController extends Controller
 				}
 			}
 		}
-		//echo CJSON::encode($j_cats);
-		echo $_GET['callback'] . "( [{ \"x\": 10, \"y\": 15}] )";
+		echo $_GET['callback'] . "(". CJSON::encode($j_cats) .")";
+		//echo $_GET['callback'] . "( [{ \"x\": 10, \"y\": 15}] )";
 		Yii::app()->end(); 
 	}
 	
