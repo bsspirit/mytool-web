@@ -1,10 +1,4 @@
 <?php
-
-// uncomment the following to define a path alias
-// Yii::setPathOfAlias('local','path/to/local-folder');
-
-// This is the main Web application configuration. Any writable
-// CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'网站工具',
@@ -45,10 +39,17 @@ return array(
 			),
 		),
 		'db'=>array(
+<<<<<<< HEAD
 			'connectionString' => 'mysql:host=localhost;dbname=mytool',
 			'emulatePrepare' => true,
 			'username' => 'mytool',
 			'password' => 'mytool',
+=======
+			'connectionString' => 'mysql:host=localhost;dbname=webtool',
+			'emulatePrepare' => true,
+			'username' => 'webtool',
+			'password' => 'webtool',
+>>>>>>> e99024c3b2e1e3af681ee270ec0a8ad5b2c1f691
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(
@@ -64,18 +65,18 @@ return array(
 //				array(
 //					'class'=>'CWebLogRoute',
 //				),
-				array(
-	                'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
-	                //If true, then after reloading the page will open the current panel
-	                'openLastPanel'=>true,
-	                // Access is restricted by default to the localhost
-	                //'ipFilters'=>array('127.0.0.1','192.168.1.*', 88.23.23.0/24),
-					//This is a list of paths to extra panels.
-//					'additionalPanels'=>array(
-//						'YiiDebugToolbarPanelExample', // add as last
-//						'prepend:YiiDebugToolbarPanelExample', // add as first
-//					),
-	            ),
+//				array(
+//	                'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+//	                //If true, then after reloading the page will open the current panel
+//	                'openLastPanel'=>true,
+//	                // Access is restricted by default to the localhost
+//	                //'ipFilters'=>array('127.0.0.1','192.168.1.*', 88.23.23.0/24),
+//					//This is a list of paths to extra panels.
+////					'additionalPanels'=>array(
+////						'YiiDebugToolbarPanelExample', // add as last
+////						'prepend:YiiDebugToolbarPanelExample', // add as first
+////					),
+//	            ),
 			),
 		),
 	),

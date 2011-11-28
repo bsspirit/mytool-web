@@ -228,5 +228,22 @@ div.search-form
 	background: #80CFFF;
 }
 
+<<<<<<< HEAD
 .w400{width:400px;}
 div.title{width:100px;float:left;}
+=======
+/*************我的设置**********************/
+.l{float:left;}
+.r{float:right;}
+.c{clear:both;}
+
+#navigator{text-align:center;margin:10px auto;}
+#navigator .nav{text-align:left;}
+#navigator .nav .icon{width:16px;height:16px;}
+#navigator .nav h1{font: bold 14px Arial;color: #0066A4;}
+#navigator .nav ul{text-align:left;}
+#navigator .nav ul li{float: left;margin:15px;list-style: none outside none;}
+#navigator .nav .preview{width:180px;border: 1px solid #999;padding:5px;}
+#navigator .nav .info{text-align:left;}
+
+>>>>>>> e99024c3b2e1e3af681ee270ec0a8ad5b2c1f691
