@@ -48,14 +48,96 @@ function jsonpCallback(obj){
 		$('#navigator').append(v);
 	});
 	
-	fade_click();
+	click_fade();
 }
 
-function http_url(url){
-	return "http://"+url;
+function getCatalogList(){
+	$.ajax({
+	    url: "/website/JSONCatalog",
+	    data:{},
+	    type:"get",
+	    dataType:"jsonp",
+        jsonp:"callback",
+        jsonpCallback: "render_add2_catalog",
+	    success: function(a,b,c){},
+	    error: function(a,b,c){}
+	});	
 }
 
-function fade_click(){
+/*=============功能按键====================*/
+function function_catalog(){
+	navigatorHandler();
+}
+
+function function_add(){
+	$('#dialogClassroom').dialog('open');
+	render_add1();
+}
+/*=================================*/
+
+function render_add1(url){
+	url=(url!=null?url:'');
+	var html = '<p>输入URL：<input type="text" name="url" class="i_text" value="http://'+url+'"/></p>';
+		html += '<p><input type="button" value="提交" class="i_button" onclick="submit_add1(this)"/></p>';
+	$('#navigator_add_1').html(html);
+	
+	$('#navigator_add_1').show();
+	$('#navigator_add_2').hide();
+}
+
+function submit_add1(){
+	var url = $('#navigator_add_1 input[name="url"]').val();
+	$.ajax({
+	    url: "/website/JSONWebsite",
+	    data:{"url":url},
+	    type:"get",
+	    dataType:"jsonp",
+        jsonp:"callback",
+        jsonpCallback: "render_add2",
+	    success: function(a,b,c){},
+	    error: function(a,b,c){}
+	});	
+}
+
+function render_add2(obj){
+	var html = '<p>网址：'+obj.url+'&nbsp;&nbsp;<img src="/images/404.ico" class="icon"/></p>';
+		html += '<p id="navigator_add_2_catalog"></p>';
+		html +='<p>标题：<input type="text" name="title_2" class="i_text" value="'+obj.title+'"/></p>';
+		html +='<p>截图：<br/>';
+		html +='<img src="/images/404.png" width="480px"/>';
+		html +='</p>';
+		html +='<hr/><p>';
+		html +='<input type="button" value="返回" class="i_button" onclick="click_back()"/>';
+		html +='<input type="button" value="提交" class="i_button" onclick="submit_add2()"/>';
+		html +='</p>';
+	$('#navigator_add_2').html(html);
+	getCatalogList();
+	$('#navigator_add_1').hide();
+	$('#navigator_add_2').show();
+}
+
+function render_add2_catalog(obj){
+	var	txt= '分类：';
+		txt+='<select name="catalog" class="i_select">';
+		$.each(obj, function(key, val) {
+	    	txt+='<option value="'+val.id+'" >'+val.name+'</option>';
+	  	});
+		txt+='</select>';
+	
+	$('#navigator_add_2_catalog').html(txt);
+}
+
+function click_back(){
+	$('#navigator_add_1').show();
+	$('#navigator_add_2').hide();
+}
+
+function submit_add2(){
+	navigatorHandler();
+	$('#dialogClassroom').dialog('close');
+}
+
+function click_fade(){
 	$('#navigator h1').each(function(idx){
 		$(this).toggle(function(){
 			$(this).next().fadeOut();
@@ -65,48 +147,12 @@ function fade_click(){
 	});
 }
 
-function add(){
-	$('#dialogClassroom').dialog('open');
-	render_add1();
+/*================工具=======================*/
+function http_url(url,https){
+	var protocol = "http";
+	if(https!='undefined' && https=='https'){
+		protocol = "https";
+	}
+	return protocol+"://"+url;
 }
-
-function render_add1(url){
-	url=(url!=null?url:'');
-	var html = '<p>输入URL：<input type="text" name="url" class="i_text" value="http://'+url+'"/></p>';
-		html += '<p><input type="button" value="提交" class="i_button" onclick="add1(this)"/></p>';
-	$('#navigator_add_1').html(html);
-}
-
-function add1(){
-	var url = $('#navigator_add_1 input[name="url"]').val();
-	render_add2(url);
-	$('#navigator_add_1').hide();
-}
-
-function render_add2(url){
-	url=(url!=null?url:'');
-	var html = '<p>网址：'+url+'&nbsp;&nbsp;<img src="/images/404.ico" class="icon"/></p>';
-		html +='<p>分类：<input type="text" name="url_2" class="i_select"/></p>';
-		html +='<p>标题：<input type="text" name="title_2" class="i_text"/></p>';
-		html +='<p>截图：<br/>';
-		html +='<img src="/images/404.png" width="480px"/>';
-		html +='</p>';
-		html +='<p>';
-		html +='<input type="button" value="返回" class="i_button" onclick="back()"/>';
-		html +='<input type="button" value="提交" class="i_button" onclick="add2()"/>';
-		html +='</p>';
-	$('#navigator_add_2').html(html);
-	$('#navigator_add_2').show();
-}
-
-function back(){
-	$('#navigator_add_1').show();
-	$('#navigator_add_2').hide();
-}
-
-function add2(){
-	navigatorHandler();
-	$('#dialogClassroom').dialog('close');
-}
-
-
+/*=====================================*/

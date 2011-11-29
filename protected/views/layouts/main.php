@@ -21,9 +21,11 @@
 			'items'=>array(
 				array('label'=>'首页', 'url'=>array('/default/index')),
 				array('label'=>'快捷导航', 'url'=>array('/website/index')),
-				array('label'=>'站工工具', 'url'=>array('/tool/index')),
 				array('label'=>'我的博客', 'url'=>array('/blog/index')),
 				array('label'=>'我的理财', 'url'=>array('/account/index')),
+				array('label'=>'站工工具', 'url'=>array('/webtool/index')),
+				array('label'=>'黑客工具', 'url'=>array('/hack/index')),
+				array('label'=>'常用工具', 'url'=>array('/common/index')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),

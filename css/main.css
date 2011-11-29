@@ -133,6 +133,8 @@ div.view
 	padding: 10px;
 	margin: 10px 0;
 	border: 1px solid #C9E0ED;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
 
 div.breadcrumbs
@@ -239,11 +241,12 @@ div.search-form
 #navigator .nav{text-align:left;margin:20px 0;}
 #navigator .nav h1{font: bold 14px Arial;color: #0066A4;}
 #navigator .nav ul{text-align:left;}
-#navigator .nav ul li{float: left;margin:15px;list-style: none outside none;}
-#navigator .nav .preview{width:180px;border: 1px solid #999;padding:5px;}
+#navigator .nav li{float:left;margin:12px;list-style:none outside none;}
+#navigator .nav .preview{width:180px;border:1px solid #999;padding:5px;}
 #navigator .nav .info{text-align:left;}
 
 .form{margin:10px 5px;}
+.form p{margin:0 0 0.5em;}
 .form .i_text{width:380px;url("img/bg-input.png") repeat-x scroll 0 -130px #FFFFFF;border: 1px solid #CCCCCC;}
-.form .i_select{width:150px;url("img/bg-input.png") repeat-x scroll 0 -130px #FFFFFF;border: 1px solid #CCCCCC;}
-.form .i_button{height:24px;color:#444444;font-size:12px;}
+.form .i_select{width:120px;url("img/bg-input.png") repeat-x scroll 0 -130px #FFFFFF;border: 1px solid #CCCCCC;}
+.form .i_button{width:80px;color:#444444;font-size:12px;}

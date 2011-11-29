@@ -1,5 +1,4 @@
 <?php
-
 class WebsiteController extends Controller
 {
 	/**
@@ -27,7 +26,7 @@ class WebsiteController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','JSONNavigator'),
+				'actions'=>array('index','view','JSONNavigator','JSONWebsite','JSONCatalog'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -79,9 +78,53 @@ class WebsiteController extends Controller
 			}
 		}
 		echo $_GET['callback'] . "(". CJSON::encode($j_cats) .")";
-		//echo $_GET['callback'] . "( [{ \"x\": 10, \"y\": 15}] )";
 		Yii::app()->end(); 
 	}
+	
+	/*
+	 * 分析网站
+	 */
+	public function actionJSONWebsite($url){
+		$header = $this->getHtml($url);
+		echo $_GET['callback'] . "(". CJSON::encode($header) .")";
+		Yii::app()->end();
+	}
+	
+	/*
+	 * 分类下拉列表
+	 */
+	public function actionJSONCatalog($cid=null){
+		$cats=WebsiteCatalog::model()->findAll();
+		$j_cats = array();
+		foreach ($cats as $cat){
+			$line = array(
+				'id'=>$cat->id,
+				'name'=>$cat->name,
+			);
+			array_push($j_cats, $line);
+		}
+		echo $_GET['callback'] . "(". CJSON::encode($j_cats) .")";
+		Yii::app()->end();
+	}
+	
+	/*
+	 * 访问网站
+	 */
+	private function getHtml($url) {
+		$time1 = time();
+		$html = 'abc';
+		$time2 = time();
+		$title = 'abc';
+
+		$header = array(
+			'title'=>$title,
+			'url'=>$url,
+			'time'=>($time2-$time1),
+		);
+		return $header;
+	}
+	
+	
 	
 	public function actionIndex()
 	{
