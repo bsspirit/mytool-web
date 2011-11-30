@@ -11,23 +11,19 @@ return array(
 		'application.models.*',
 		'application.components.*',
 		'application.extensions.*',
-		'application.extensions.yii-debug-toolbar.*',
 	),
 
 	'modules'=>array(
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'gii',
-		 	// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
-		
 	),
 
 	// application components
 	'components'=>array(
 		'user'=>array(
-			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
 		'urlManager'=>array(
@@ -48,6 +44,15 @@ return array(
 		'errorHandler'=>array(
             'errorAction'=>'site/error',
         ),
+		'curl' =>array(
+			'class' => 'application.extensions.curl.Curl',
+// 			'options'=>array(
+//         		'timeout'=>0,
+// 		        'cookie'=>array(
+// 					'set'=>'cookie'
+// 				),
+// 			),
+		),
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
@@ -55,21 +60,21 @@ return array(
 //					'class'=>'CFileLogRoute',
 //					'levels'=>'error, warning',
 //				),
-//				array(
-//					'class'=>'CWebLogRoute',
-//				),
-//				array(
-//	                'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
-//	                //If true, then after reloading the page will open the current panel
-//	                'openLastPanel'=>true,
-//	                // Access is restricted by default to the localhost
-//	                //'ipFilters'=>array('127.0.0.1','192.168.1.*', 88.23.23.0/24),
-//					//This is a list of paths to extra panels.
-////					'additionalPanels'=>array(
-////						'YiiDebugToolbarPanelExample', // add as last
-////						'prepend:YiiDebugToolbarPanelExample', // add as first
-////					),
-//	            ),
+// 				array(
+// 					'class'=>'CWebLogRoute',
+// 				),
+// 				array(
+// 	                'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+// 	                //If true, then after reloading the page will open the current panel
+// 	                'openLastPanel'=>true,
+// 	                // Access is restricted by default to the localhost
+// 	                //'ipFilters'=>array('127.0.0.1','192.168.1.*', 88.23.23.0/24),
+// 					//This is a list of paths to extra panels.
+// //					'additionalPanels'=>array(
+// //						'YiiDebugToolbarPanelExample', // add as last
+// //						'prepend:YiiDebugToolbarPanelExample', // add as first
+// //					),
+// 	            ),
 			),
 		),
 	),

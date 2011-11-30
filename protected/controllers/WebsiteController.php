@@ -26,7 +26,7 @@ class WebsiteController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','JSONNavigator','JSONWebsite','JSONCatalog'),
+				'actions'=>array('index','view','save','JSONNavigator','JSONWebsite','JSONCatalog'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -112,16 +112,28 @@ class WebsiteController extends Controller
 	 */
 	private function getHtml($url) {
 		$time1 = time();
-		$html = 'abc';
+		$data = Yii::app()->curl->simple_get($url);
+		require_once 'simple_html_dom.php';
+		$html=str_get_html($data);
 		$time2 = time();
-		$title = 'abc';
+		$title = $html->find('title',0)->innertext;
+		$keywords=$html->find('meta[name="keywords"]',0)->innertext;
+		$icon=$url."/favicon.ico";
+		$image="/images/404.png";
 
 		$header = array(
 			'title'=>$title,
+			'keywords'=>$keywords,
 			'url'=>$url,
+			'icon'=>$icon,
+			'image'=>$image,
 			'time'=>($time2-$time1),
 		);
 		return $header;
+	}
+	
+	public function actionSave(){
+		
 	}
 	
 	

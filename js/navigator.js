@@ -100,11 +100,11 @@ function submit_add1(){
 }
 
 function render_add2(obj){
-	var html = '<p>网址：'+obj.url+'&nbsp;&nbsp;<img src="/images/404.ico" class="icon"/></p>';
+	var html = '<p>网址：'+obj.url+'&nbsp;&nbsp;<img src="'+obj.icon+'" class="icon"/></p>';
 		html += '<p id="navigator_add_2_catalog"></p>';
 		html +='<p>标题：<input type="text" name="title_2" class="i_text" value="'+obj.title+'"/></p>';
 		html +='<p>截图：<br/>';
-		html +='<img src="/images/404.png" width="480px"/>';
+		html +='<img src="'+obj.image+'" width="480px"/>';
 		html +='</p>';
 		html +='<hr/><p>';
 		html +='<input type="button" value="返回" class="i_button" onclick="click_back()"/>';
