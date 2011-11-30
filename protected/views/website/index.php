@@ -23,5 +23,3 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
 </div>
 
 <script src="/js/navigator.js"></script>
-<script src="/js/jquery-impromptu.3.2.min.js"></script>
-

@@ -26,7 +26,7 @@ class WebsiteController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','save','JSONNavigator','JSONWebsite','JSONCatalog'),
+				'actions'=>array('index','view','postSave','JSONNavigator','JSONWebsite','JSONCatalog'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -118,7 +118,12 @@ class WebsiteController extends Controller
 		$time2 = time();
 		$title = $html->find('title',0)->innertext;
 		$keywords=$html->find('meta[name="keywords"]',0)->innertext;
-		$icon=$url."/favicon.ico";
+		
+		$icon_remote=$url."/favicon.ico";
+		$file = file_get_contents($icon_remote);
+		$icon="/images/icon/".substr(str_replace("www.","",$url),7).".ico";
+		file_put_contents(substr($icon,1), $file);
+		
 		$image="/images/404.png";
 
 		$header = array(
@@ -132,8 +137,21 @@ class WebsiteController extends Controller
 		return $header;
 	}
 	
-	public function actionSave(){
+	public function actionPostSave(){
+		$model=new Website;
+		$model['title']=$_POST['title'];
+		$model['image']=$_POST['image'];
+		$model['cid']=$_POST['catalog'];
+		$model['icon']=$_POST['icon'];
+		$model['url']=substr($_POST['url'],7);
 		
+		$json=array('success'=>false);
+		if($model->save(false)){
+			$json['success']=true;	
+		} 
+		
+		echo CJSON::encode($json);
+		Yii::app()->end();
 	}
 	
 	

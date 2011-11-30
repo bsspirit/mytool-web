@@ -44,7 +44,7 @@ class Website extends CActiveRecord
 			array('image', 'length', 'max'=>256),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, url, grade, cid, image, create_time', 'safe', 'on'=>'search'),
+			array('id, url, grade, cid, image, create_time, title, icon', 'safe', 'on'=>'search'),
 		);
 	}
 

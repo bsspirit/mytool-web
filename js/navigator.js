@@ -18,7 +18,7 @@ function jsonpCallback(obj){
 		html +='<h1>'+v.name+'</h1>';
 		html +='<ul>';
 		$.each(v.pages,function(k1,v1){
-			html +='<li>';
+			html +='<li class="l">';
 			html +='<a href="'+http_url(v1.url)+'" target="_blank">';
 			html +='<img src="'+v1.image+'" class="preview"/>';
 			html +='</a>';
@@ -100,16 +100,21 @@ function submit_add1(){
 }
 
 function render_add2(obj){
-	var html = '<p>网址：'+obj.url+'&nbsp;&nbsp;<img src="'+obj.icon+'" class="icon"/></p>';
-		html += '<p id="navigator_add_2_catalog"></p>';
-		html +='<p>标题：<input type="text" name="title_2" class="i_text" value="'+obj.title+'"/></p>';
+	var html = '<form id="navigator_add_form_2">';
+		html +='<p>网址：'+obj.url+'&nbsp;&nbsp;<img src="'+obj.icon+'" class="icon"/></p>';
+		html +='<p id="navigator_add_2_catalog"></p>';
+		html +='<p>标题：<input type="text" name="title" class="i_text" value="'+obj.title+'"/></p>';
 		html +='<p>截图：<br/>';
 		html +='<img src="'+obj.image+'" width="480px"/>';
 		html +='</p>';
 		html +='<hr/><p>';
-		html +='<input type="button" value="返回" class="i_button" onclick="click_back()"/>';
-		html +='<input type="button" value="提交" class="i_button" onclick="submit_add2()"/>';
-		html +='</p>';
+		html +='<input type="button" name="back" value="返回" class="i_button" onclick="click_back()"/>';
+		html +='<input type="button" name="submit" value="提交" class="i_button" onclick="submit_add2()"/>';
+		
+		html +='<input type="hidden" name="url" value="'+obj.url+'"/>';
+		html +='<input type="hidden" name="image" value="'+obj.image+'"/>';
+		html +='<input type="hidden" name="icon" value="'+obj.icon+'"/>';
+		html +='</p></form>';
 	$('#navigator_add_2').html(html);
 	getCatalogList();
 	$('#navigator_add_1').hide();
@@ -133,8 +138,25 @@ function click_back(){
 }
 
 function submit_add2(){
-	navigatorHandler();
-	$('#dialogClassroom').dialog('close');
+	var form = {};
+	$('#navigator_add_form_2 :input').each(function(k,v){
+	 	form[v.name]=v.value;
+	});
+	
+	$.ajax({
+	    url: "/website/postSave",
+	    type:"post",
+	    data:form,
+	    success: function(a,b,c){
+	    	navigatorHandler();
+			$('#dialogClassroom').dialog('close');
+	    },
+	    error: function(a,b,c){
+	    	alert(a);
+	    }
+	});
+	
+	
 }
 
 function click_fade(){
