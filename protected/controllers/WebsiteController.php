@@ -117,21 +117,33 @@ class WebsiteController extends Controller
 		$html=str_get_html($data);
 		$time2 = time();
 		$title = $html->find('title',0)->innertext;
-		$keywords=$html->find('meta[name="keywords"]',0)->innertext;
+		//$keywords=$html->find('meta[name="keywords"]',0)->innertext;
 		
 		$icon_remote=$url."/favicon.ico";
-		$file = file_get_contents($icon_remote);
-		$icon="/images/icon/".substr(str_replace("www.","",$url),7).".ico";
-		file_put_contents(substr($icon,1), $file);
+		$icon="./images/icon/".substr(str_replace("www.","",$url),7).".ico";
+		//================================================
+		//调用命令代替PHP处理
+		//file_put_contents(substr($icon,1), file_get_contents($icon_remote));
+		//wget http://jquery.com/favicon.ico -O tt.ico
+		//================================================
+		echo exec("wget ".$icon_remote . " -O " . $icon);
 		
-		$image="/images/404.png";
+		$image="./images/screen/".substr(str_replace("www.","",$url),7).".png";
+		//================================================
+		//命令截图
+		//xvfb-run  cutycapt --url=http://www.ppurl.com --out=ppurl.com.png
+		//xvfb-run --server-args="-screen 0, 1024x768x24" cutycapt --url=$url --out=$image
+		//mogrify -resize 400 -crop 400x300-0+0 a.png
+		//================================================
+		exec('xvfb-run --server-args="-screen 0, 1024x768x24" cutycapt --url='.$url.' --out='.$image);
+		exec('mogrify -resize 480 -crop 480x300-0+0 '.$image);
 
 		$header = array(
 			'title'=>$title,
-			'keywords'=>$keywords,
+			//'keywords'=>$keywords,
 			'url'=>$url,
-			'icon'=>$icon,
-			'image'=>$image,
+			'icon'=>substr($icon,1),
+			'image'=>substr($image,1),
 			'time'=>($time2-$time1),
 		);
 		return $header;

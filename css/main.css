@@ -243,6 +243,7 @@ div.search-form
 #navigator .nav ul{list-style:none outside none;}
 #navigator .nav li{width:200px;height:180px;margin:8px;text-align:left;}
 #navigator .nav .preview{width:180px;border:1px solid #999;padding:5px;}
+#navigator .nav .preview .clip{clip:rect(0px, 240px, 120px, 0px);position:relative;"}
 #navigator .nav .info{text-align:left;}
 
 .form{margin:10px 5px;}

@@ -20,7 +20,7 @@ function jsonpCallback(obj){
 		$.each(v.pages,function(k1,v1){
 			html +='<li class="l">';
 			html +='<a href="'+http_url(v1.url)+'" target="_blank">';
-			html +='<img src="'+v1.image+'" class="preview"/>';
+			html +='<img src="'+v1.image+'" class="preview" />';
 			html +='</a>';
 			html +='<div class="info">';
 			if(v1.icon != null){
