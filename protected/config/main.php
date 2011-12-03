@@ -11,6 +11,7 @@ return array(
 		'application.models.*',
 		'application.components.*',
 		'application.extensions.*',
+		'application.util.*',
 	),
 
 	'modules'=>array(
@@ -63,18 +64,6 @@ return array(
 // 				array(
 // 					'class'=>'CWebLogRoute',
 // 				),
-// 				array(
-// 	                'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
-// 	                //If true, then after reloading the page will open the current panel
-// 	                'openLastPanel'=>true,
-// 	                // Access is restricted by default to the localhost
-// 	                //'ipFilters'=>array('127.0.0.1','192.168.1.*', 88.23.23.0/24),
-// 					//This is a list of paths to extra panels.
-// //					'additionalPanels'=>array(
-// //						'YiiDebugToolbarPanelExample', // add as last
-// //						'prepend:YiiDebugToolbarPanelExample', // add as first
-// //					),
-// 	            ),
 			),
 		),
 	),

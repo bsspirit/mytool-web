@@ -237,6 +237,16 @@ div.search-form
 .h{display:none;}
 .icon{width:16px;height:16px;}
 
+.w80{width:80px;}
+.w200{width:200px;}
+.w300{width:300px;}
+.w400{width:400px;}
+
+.h100{height:100px;}
+.h200{height:200px;}
+.h300{height:300px;}
+.h400{height:400px;}
+
 #navigator{text-align:center;margin:10px auto;}
 #navigator .nav{text-align:left;margin:20px 0;}
 #navigator .nav h1{font: bold 14px Arial;color: #0066A4;}
@@ -248,6 +258,7 @@ div.search-form
 
 .form{margin:10px 5px;}
 .form p{margin:0 0 0.5em;}
-.form .i_text{width:380px;url("img/bg-input.png") repeat-x scroll 0 -130px #FFFFFF;border: 1px solid #CCCCCC;}
-.form .i_select{width:120px;url("img/bg-input.png") repeat-x scroll 0 -130px #FFFFFF;border: 1px solid #CCCCCC;}
-.form .i_button{width:80px;color:#444444;font-size:12px;}
+.ii_text{width:380px;}
+.i_area{width:380px;height:400px;url("img/bg-input.png") repeat-x scroll 0 -130px #FFFFFF;border: 1px solid #CCCCCC;}
+.i_select{width:120px;url("img/bg-input.png") repeat-x scroll 0 -130px #FFFFFF;border: 1px solid #CCCCCC;}
+.i_button{width:80px;color:#444444;font-size:12px;}
