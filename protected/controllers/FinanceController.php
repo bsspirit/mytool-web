@@ -40,13 +40,23 @@ class FinanceController extends Controller
 		));
 	}
 	
+	/*
+	 * 增加一个日记账
+	 */
 	public function actionAddBalance(){
-		$model=new Website;
-		$model['title']=$_POST['title'];
-		$model['image']=$_POST['image'];
-		$model['cid']=$_POST['catalog'];
-		$model['icon']=$_POST['icon'];
-		$model['url']=substr($_POST['url'],7);
+		$model=new FinanceBalance;
+		$model['money']=FinanceUtil::yuan2Fen($_POST['balance_money']);
+		$model['description']=$_POST['balance_description'];
+		$model['date']=str_replace("-","",$_POST['balance_date']);
+		$model['pay_type']=$_POST['balance_pay_type'];
+		$model['pay_mode']=$_POST['balance_pay_mode'];
+		
+		$json=array('success'=>false);
+		if($model->save(false)){
+			$json['success']=true;	
+		} 
+		echo CJSON::encode($json);
+		Yii::app()->end();
 	}
 	
 	/*

@@ -20,11 +20,10 @@ function function_balance_add(){
 
 function render_balance_form(){
 	var form = {
-		property:{id:"balance_form",action:"",method:"POST"},
 		input:[{id:"balance_money",label:"支付金额"}],
 		area:[{id:"balance_description",label:"我的备注",css:"w300 h100"}],
 		date:[{id:"balance_date",label:"支付日期"}],
-		button:[{id:"balance_submit",label:"提交",css:"w80",onclick:"submit_add(this)"}],
+		button:[{id:"balance_submit",label:"提交",css:"w80",onclick:"submit_add()"}],
 		list:[{
 			url:"/finance/JSONBalanceType",
 			data:{},
