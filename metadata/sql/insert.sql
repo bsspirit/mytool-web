@@ -37,3 +37,6 @@ insert into t_website_order(wid,score) values(7,9);
 insert into t_website_order(wid,score) values(8,8);
 insert into t_website_order(wid,score) values(9,7);
 insert into t_website_order(wid,score) values(10,6);
+
+insert into t_finance_balance(date, money, pay_type, pay_mode, description) values(20111114,1000000,'output','cash','还杨旭岚礼金');
+

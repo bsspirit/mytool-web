@@ -70,15 +70,15 @@ function function_catalog(){
 }
 
 function function_add(){
-	$('#dialogClassroom').dialog('open');
+	$('#navigatorDialog').dialog('open');
 	render_add1();
 }
 /*=================================*/
 
 function render_add1(url){
 	url=(url!=null?url:'');
-	var html = '<p>输入URL：<input type="text" name="url" class="i_text" value="http://'+url+'"/></p>';
-		html += '<p><input type="button" value="提交" class="i_button" onclick="submit_add1(this)"/></p>';
+	var html = '<p>输入URL：<input type="text" name="url" class="w400" value="http://'+url+'"/></p>';
+		html += '<p><input type="button" value="提交" class="w80" onclick="submit_add1(this)"/></p>';
 	$('#navigator_add_1').html(html);
 	
 	$('#navigator_add_1').show();
@@ -103,13 +103,13 @@ function render_add2(obj){
 	var html = '<form id="navigator_add_form_2">';
 		html +='<p>网址：'+obj.url+'&nbsp;&nbsp;<img src="'+obj.icon+'" class="icon"/></p>';
 		html +='<p id="navigator_add_2_catalog"></p>';
-		html +='<p>标题：<input type="text" name="title" class="i_text" value="'+obj.title+'"/></p>';
+		html +='<p>标题：<input type="text" name="title" class="w300" value="'+obj.title+'"/></p>';
 		html +='<p>截图：<br/>';
 		html +='<img src="'+obj.image+'" width="480px"/>';
 		html +='</p>';
 		html +='<hr/><p>';
-		html +='<input type="button" name="back" value="返回" class="i_button" onclick="click_back()"/>';
-		html +='<input type="button" name="submit" value="提交" class="i_button" onclick="submit_add2()"/>';
+		html +='<input type="button" name="back" value="返回" class="w80" onclick="click_back()"/>';
+		html +='<input type="button" name="submit" value="提交" class="w80" onclick="submit_add2()"/>';
 		
 		html +='<input type="hidden" name="url" value="'+obj.url+'"/>';
 		html +='<input type="hidden" name="image" value="'+obj.image+'"/>';
@@ -123,7 +123,7 @@ function render_add2(obj){
 
 function render_add2_catalog(obj){
 	var	txt= '分类：';
-		txt+='<select name="catalog" class="i_select">';
+		txt+='<select name="catalog" class="w200">';
 		$.each(obj, function(key, val) {
 	    	txt+='<option value="'+val.id+'" >'+val.name+'</option>';
 	  	});
@@ -149,7 +149,7 @@ function submit_add2(){
 	    data:form,
 	    success: function(a,b,c){
 	    	navigatorHandler();
-			$('#dialogClassroom').dialog('close');
+			$('#navigatorDialog').dialog('close');
 	    },
 	    error: function(a,b,c){
 	    	alert(a);

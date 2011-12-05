@@ -32,3 +32,13 @@ CREATE TABLE t_website_order(
 	score int not null default 0,
 	create_time TIMESTAMP default now()
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE t_finance_balance(
+	id int primary key auto_increment,
+	date int not null,
+	money int not null default 0,
+	pay_type enum('input','output'),
+	pay_mode enum('cash','visa'),
+	description varchar(512) null,
+	create_time TIMESTAMP default now()
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

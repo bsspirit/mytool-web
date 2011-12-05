@@ -5,7 +5,7 @@
 	<a href="javascript:void(0);" onclick="function_add()">增加</a>
 <?php
 $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
-    'id'=>'dialogClassroom',
+    'id'=>'navigatorDialog',
     'options'=>array(
         'title'=>'增加网站',
         'autoOpen'=>false,
@@ -25,4 +25,3 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
 </div>
 
 <script src="/js/navigator.js"></script>
-<script src="/js/jquery.imgareaselect.pack.js"></script>
