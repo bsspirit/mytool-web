@@ -13,7 +13,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
     ),
 ));
 ?>
-<div id="function_balance_add" class="form"></div>
+<div id="balance_form_add" class="form"></div>
 <?php $this->endWidget();?>
 </div>
 

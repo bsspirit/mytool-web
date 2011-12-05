@@ -27,6 +27,11 @@ function render_form(form){
 					render_form_area(v.id,v.label,v.css);
 				});
 				break;
+			case 'button':
+				$.each(form[prop],function(k,v){
+					render_form_button(v.id,v.label,v.css,v.onclick);
+				});
+				break;
 		}
 	}
 }
@@ -50,8 +55,6 @@ function render_form_area(id,label,css){
 	var txt = label+': <br/><textarea id="'+id_rad+'" name="'+name+'" class="'+css+'" />';
 	$('#'+id).html(txt);
 }
-
-
 
 //======Date======================
 function render_form_date(id,label,css){
@@ -77,6 +80,13 @@ function render_form_list(obj,id,label,css){
 	    	txt+='<option value="'+val.id+'" >'+val.name+'</option>';
 	  	});
 		txt+='</select>';
+	$('#'+id).html(txt);
+}
+
+//=======Button================
+function render_form_button(id,label,css,onclick){
+	var id_rad = id+'_'+getRandom(100);
+	var txt = '<input id="'+id_rad+'" type="button" value="'+label+'" class="'+css+'" onclick="'+onclick+'"/>';
 	$('#'+id).html(txt);
 }
 
