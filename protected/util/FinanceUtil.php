@@ -1,6 +1,16 @@
 <?php
 class FinanceUtil{
 	
+	public static $balance_pay_type = array(
+		array("id"=>"input","name"=>"收入"),
+		array("id"=>"output","name"=>"支出"),
+	);
+	
+	public static $balance_pay_mode = array(
+		array("id"=>"cash","name"=>"现金"),
+		array("id"=>"visa","name"=>"信用卡"),
+	);
+	
 	public static function fen2Yuan($fen){
 		return substr($fen,0,-2).'.'.substr($fen,-2);
 	}

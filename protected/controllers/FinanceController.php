@@ -19,7 +19,7 @@ class FinanceController extends Controller
 //				'users'=>array('*'),
 //			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','create','update','addBalance'),
+				'actions'=>array('index','create','update','addBalance','jSONBalanceType','jSONBalanceMode'),
 				'users'=>array('@'),
 			),
 //			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -47,7 +47,20 @@ class FinanceController extends Controller
 		$model['cid']=$_POST['catalog'];
 		$model['icon']=$_POST['icon'];
 		$model['url']=substr($_POST['url'],7);
-		
+	}
+	
+	/*
+	 * 理财-收支类型
+	 */
+	public function actionJSONBalanceType($cid=null){
+		echo CJSON::encode(FinanceUtil::$balance_pay_type);
+		Yii::app()->end();
+	}
+	
+	public function actionJSONBalanceMode($cid=null){
+//		echo $_GET['callback'] . "(". CJSON::encode(FinanceUtil::$balance_pay_mode) .")";
+		echo CJSON::encode(FinanceUtil::$balance_pay_mode);
+		Yii::app()->end();
 	}
 	
 	//============================================
