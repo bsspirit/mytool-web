@@ -19,7 +19,7 @@ class FinanceController extends Controller
 //				'users'=>array('*'),
 //			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','create','update'),
+				'actions'=>array('index','create','update','addBalance'),
 				'users'=>array('@'),
 			),
 //			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -38,6 +38,16 @@ class FinanceController extends Controller
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
+	}
+	
+	public function actionAddBalance(){
+		$model=new Website;
+		$model['title']=$_POST['title'];
+		$model['image']=$_POST['image'];
+		$model['cid']=$_POST['catalog'];
+		$model['icon']=$_POST['icon'];
+		$model['url']=substr($_POST['url'],7);
+		
 	}
 	
 	//============================================

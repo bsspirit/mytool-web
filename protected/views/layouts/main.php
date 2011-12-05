@@ -8,7 +8,8 @@
 	<link rel="stylesheet" href="/css/print.css" media="print" />
 	<link rel="stylesheet" href="/css/main.css" />
 	<link rel="stylesheet" href="/css/form.css" />
-	<script src="/js/jquery-1.5.1.min.js"></script>
+	<script src="/js/jquery-1.6.2.min.js"></script>
+	<script src="/js/jquery-ui-1.8.16.min.js"></script>
 </head>
 <body>
 <div class="container" id="page">
