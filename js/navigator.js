@@ -168,13 +168,3 @@ function click_fade(){
 		});
 	});
 }
-
-/*================工具=======================*/
-function http_url(url,https){
-	var protocol = "http";
-	if(https!='undefined' && https=='https'){
-		protocol = "https";
-	}
-	return protocol+"://"+url;
-}
-/*=====================================*/

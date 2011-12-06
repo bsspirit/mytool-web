@@ -19,7 +19,7 @@ class FinanceController extends Controller
 //				'users'=>array('*'),
 //			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','create','update','addBalance'),
+				'actions'=>array('index','create','update','addBalance','jSONBalanceType','jSONBalanceMode'),
 				'users'=>array('@'),
 			),
 //			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -40,14 +40,37 @@ class FinanceController extends Controller
 		));
 	}
 	
+	/*
+	 * 增加一个日记账
+	 */
 	public function actionAddBalance(){
-		$model=new Website;
-		$model['title']=$_POST['title'];
-		$model['image']=$_POST['image'];
-		$model['cid']=$_POST['catalog'];
-		$model['icon']=$_POST['icon'];
-		$model['url']=substr($_POST['url'],7);
+		$model=new FinanceBalance;
+		$model['money']=FinanceUtil::yuan2Fen($_POST['balance_money']);
+		$model['description']=$_POST['balance_description'];
+		$model['date']=str_replace("-","",$_POST['balance_date']);
+		$model['pay_type']=$_POST['balance_pay_type'];
+		$model['pay_mode']=$_POST['balance_pay_mode'];
 		
+		$json=array('success'=>false);
+		if($model->save(false)){
+			$json['success']=true;	
+		} 
+		echo CJSON::encode($json);
+		Yii::app()->end();
+	}
+	
+	/*
+	 * 理财-收支类型
+	 */
+	public function actionJSONBalanceType($cid=null){
+		echo CJSON::encode(FinanceUtil::$balance_pay_type);
+		Yii::app()->end();
+	}
+	
+	public function actionJSONBalanceMode($cid=null){
+//		echo $_GET['callback'] . "(". CJSON::encode(FinanceUtil::$balance_pay_mode) .")";
+		echo CJSON::encode(FinanceUtil::$balance_pay_mode);
+		Yii::app()->end();
 	}
 	
 	//============================================

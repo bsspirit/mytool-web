@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="/css/form.css" />
 	<script src="/js/jquery-1.6.2.min.js"></script>
 	<script src="/js/jquery-ui-1.8.16.min.js"></script>
+	<script src="/js/mylib.js"></script>
 </head>
 <body>
 <div class="container" id="page">
