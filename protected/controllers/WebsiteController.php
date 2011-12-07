@@ -26,7 +26,7 @@ class WebsiteController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','postSave','JSONNavigator','JSONWebsite','JSONCatalog'),
+				'actions'=>array('index','view','postSave','postDel','JSONNavigator','JSONWebsite','JSONCatalog'),
 				'users'=>array('@'),
 			),
 //			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -150,18 +150,30 @@ class WebsiteController extends Controller
 	}
 	
 	public function actionPostSave(){
-		$model=new Website;
-		$model['title']=$_POST['title'];
-		$model['image']=$_POST['image'];
-		$model['cid']=$_POST['catalog'];
-		$model['icon']=$_POST['icon'];
-		$model['url']=substr($_POST['url'],7);
-		
 		$json=array('success'=>false);
-		if($model->save(false)){
-			$json['success']=true;	
-		} 
-		
+		if(Yii::app()->request->isPostRequest){
+			$model=new Website;
+			$model['title']=$_POST['title'];
+			$model['image']=$_POST['image'];
+			$model['cid']=$_POST['catalog'];
+			$model['icon']=$_POST['icon'];
+			$model['url']=substr($_POST['url'],7);
+			if($model->save(false)){
+				$json['success']=true;	
+			} 
+		}
+		echo CJSON::encode($json);
+		Yii::app()->end();
+	}
+	
+	public function actionPostDel(){
+		$id=$_POST['id'];
+		$json=array('success'=>false);
+		if(Yii::app()->request->isPostRequest){
+			if($this->loadModel($id)->delete()){
+				$json['success']=true;	
+			} 
+		}
 		echo CJSON::encode($json);
 		Yii::app()->end();
 	}
