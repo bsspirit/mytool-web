@@ -1,20 +1,6 @@
 <div class="view">
 	<a href="javascript:void(0);" onclick="function_balance()">日记账</a>
 	<a href="javascript:void(0);" onclick="function_balance_add()">(增加)</a>
-<?php
-$this->beginWidget('zii.widgets.jui.CJuiDialog', array(
-    'id'=>'balanceDialog',
-    'options'=>array(
-        'title'=>'增加日记账',
-        'autoOpen'=>false,
-        'modal'=>true,
-        'width'=>350,
-        'height'=>400,
-    ),
-));
-?>
-<div id="balance_form_add" class="form"></div>
-<?php $this->endWidget();?>
 </div>
 
 <div class="view">
@@ -45,13 +31,13 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'buttons'=>array(
 			 	'update'=>array(
 		           	'label'=>'编辑',
-		           	'imageUrl'=>'',	
+		           	//'imageUrl'=>'',	
         		   	//'url'=>'Yii::app()->controller->createUrl("/prod/detail",array("pid"=>$data->id))',
 		      		'options'=>array('onclick'=>'click_edit()'),
 	            ),
 	            'delete'=>array(
 		           	'label'=>'删除',	
-	            	'imageUrl'=>'',
+	            	//'imageUrl'=>'',
 		      		'options'=>array('onclick'=>'click_delete()'),
 	            ),
              ),
@@ -62,6 +48,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		),
 	),
 )); ?>
+</div>
+
+<div id="balanceDialog" title="增加日记账">
+	<div id="balance_form_add" class="form"></div>
 </div>
 
 <script src="/js/finance.js"></script>

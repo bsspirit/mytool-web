@@ -1,5 +1,14 @@
+//初始化对话框
+$("#balanceDialog").dialog({
+	autoOpen: false,
+	height: 400,
+	width: 350,
+	modal: true
+});
+
+//日记账刷新
 function function_balance(){
-	alert("aa");
+	$.fn.yiiGridView.update('finance-balance-grid');
 }
 
 //日记账增加
@@ -12,7 +21,6 @@ function function_balance_add(){
 		html += '<div id="balance_description"></div>';
 		html += '<div id="balance_submit"></div>';
 		html += '</form>';
-	
 	$('#balance_form_add').html(html);
 	render_balance_form();
 	$('#balanceDialog').dialog('open');
@@ -50,7 +58,7 @@ function submit_add(){
 	    type:"post",
 	    data:form,
 	    success: function(a,b,c){
-	    	balance();
+	    	function_balance();
 			$('#balanceDialog').dialog('close');
 	    },
 	    error: function(a,b,c){
@@ -58,5 +66,4 @@ function submit_add(){
 	    }
 	});
 }
-function balance(){
-}
+
