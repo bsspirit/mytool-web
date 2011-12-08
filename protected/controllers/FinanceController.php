@@ -48,7 +48,8 @@ class FinanceController extends Controller
 	 * 增加一个日记账
 	 */
 	public function actionAddBalance(){
-		$model=new FinanceBalance;
+		$model=isset($_POST['balance_id'])?$this->loadModel($_POST['balance_id']):new FinanceBalance;
+		
 		$model['money']=$_POST['balance_money'];
 		$model['description']=$_POST['balance_description'];
 		$model['date']=str_replace("-","",$_POST['balance_date']);

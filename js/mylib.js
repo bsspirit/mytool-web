@@ -90,6 +90,9 @@ function render_form_list(obj,id,label,css){
 //=======Button================
 function render_form_button(id,label,css,onclick){
 	var id_rad = id+'_'+getRandom(100);
+	if(onclick==undefined){
+		onclick = $('#'+id).attr('onclick')!=undefined?$('#'+id).attr('onclick'):'';
+	}
 	var txt = '<input id="'+id_rad+'" type="button" value="'+label+'" class="'+css+'" onclick="'+onclick+'"/>';
 	$('#'+id).html(txt);
 }
