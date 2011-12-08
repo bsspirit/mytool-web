@@ -40,3 +40,6 @@ insert into t_website_order(wid,score) values(10,6);
 
 insert into t_finance_balance(date, money, pay_type, pay_mode, description) values(20111114,10000,'output','cash','还杨旭岚礼金');
 
+insert into t_blog_content(title, content) values('还杨旭岚礼金','还杨旭岚礼金');
+
+

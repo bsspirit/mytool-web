@@ -42,3 +42,10 @@ CREATE TABLE t_finance_balance(
 	description varchar(512) null,
 	create_time TIMESTAMP default now()
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE t_blog_content(
+	id int primary key auto_increment,
+	title varchar(64) not null,
+	content text null,
+	create_time TIMESTAMP default now()
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
