@@ -39,10 +39,11 @@ function render_form(form){
 //======Input=====================
 function render_form_input(id,label,css){
 	var name=id;
+	var value = ($('#'+id).attr('value')!=undefined)?value=$('#'+id).attr('value'):''; 
 	if(css==undefined){css="w200";}
 	
 	var id_rad = id+'_'+getRandom(100);
-	var txt = label+': <input id="'+id_rad+'" type="text" name="'+name+'" class="'+css+'" />';
+	var txt = label+': <input id="'+id_rad+'" type="text" name="'+name+'" class="'+css+'" value="'+value+'" />';
 	$('#'+id).html(txt);
 }
 
@@ -50,9 +51,10 @@ function render_form_input(id,label,css){
 function render_form_area(id,label,css){
 	var name=id;
 	if(css==undefined){css="w200";}
+	var value = ($('#'+id).attr('value')!=undefined)?value=$('#'+id).attr('value'):'';
 	
 	var id_rad = id+'_'+getRandom(100);
-	var txt = label+': <br/><textarea id="'+id_rad+'" name="'+name+'" class="'+css+'" />';
+	var txt = label+': <br/><textarea id="'+id_rad+'" name="'+name+'" class="'+css+'" >'+value+'</textarea>';
 	$('#'+id).html(txt);
 }
 
@@ -60,9 +62,10 @@ function render_form_area(id,label,css){
 function render_form_date(id,label,css){
 	var name=id;
 	if(css==undefined){css="w200";}
+	var value = ($('#'+id).attr('value')!=undefined)?value=$('#'+id).attr('value'):'';
 	
 	var id_rad = id+'_'+getRandom(100);
-	var txt = label+': <input id="'+id_rad+'" type="text" name="'+name+'" class="'+css+'" />'
+	var txt = label+': <input id="'+id_rad+'" type="text" name="'+name+'" class="'+css+'" value="'+value+'" />';
 	$('#'+id).html(txt);
 	
 	$('#'+id_rad).datepicker({dateFormat:'yy-mm-dd'});
@@ -74,10 +77,11 @@ function render_form_date(id,label,css){
 function render_form_list(obj,id,label,css){
 	var name=id;
 	if(css==undefined){css="w200";}
+	var value = ($('#'+id).attr('value')!=undefined)?value=$('#'+id).attr('value'):'';
 	
 	var	txt= label+':&nbsp;<select name="'+name+'" class="'+css+'">';
 		$.each(obj, function(key, val) {
-	    	txt+='<option value="'+val.id+'" >'+val.name+'</option>';
+	    	txt+='<option value="'+val.id+'" '+(value==val.id?"seleted":"")+'>'+val.name+'</option>';
 	  	});
 		txt+='</select>';
 	$('#'+id).html(txt);
@@ -90,6 +94,10 @@ function render_form_button(id,label,css,onclick){
 	$('#'+id).html(txt);
 }
 
+//=======Grid======================
+function get_grid_row_id(grid_button){
+	return $(grid_button).parent().parent().children(':first-child').text();
+}
 
 
 //=======Util ========================

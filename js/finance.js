@@ -8,7 +8,13 @@ $("#balanceDialog").dialog({
 
 //日记账刷新
 function function_balance(){
-	$.fn.yiiGridView.update('finance-balance-grid');
+	$.fn.yiiGridView.update('finance-balance-grid',{
+		 type:'GET',
+		 url:$(this).attr('href'),
+         success:function(data) {
+        	 $.fn.yiiGridView.update('finance-balance-grid');
+         },
+	});
 }
 
 //日记账增加
@@ -23,7 +29,30 @@ function function_balance_add(){
 		html += '</form>';
 	$('#balance_form_add').html(html);
 	render_balance_form();
+	$('#balanceDialog').dialog('option','title','日记账增加');
 	$('#balanceDialog').dialog('open');
+}
+
+//日记账修改
+function function_balance_edit(obj){
+	var id = get_grid_row_id(obj);
+	var url = '/finance/JSONBalance/'+id;
+	$.getJSON(url,function(data){
+		var html =  '<form id="balance_form">';
+			html += '<div id="balance_money" value="'+data.money+'"></div>';
+			html += '<div id="balance_date" value="'+data.date+'"></div>';
+			html += '<div id="balance_pay_type" value="'+data.pay_type+'"></div>';
+			html += '<div id="balance_pay_mode" value="'+data.pay_mode+'"></div>';
+			html += '<div id="balance_description" value="'+data.description+'"></div>';
+			html += '<div id="balance_submit"></div>';
+			html += '</form>';
+		$('#balance_form_add').html(html);
+		render_balance_form();
+		$('#balanceDialog').dialog('option','title','日记账修改');
+		$('#balanceDialog').dialog('open');
+	});
+	
+	
 }
 
 function render_balance_form(){
@@ -44,7 +73,6 @@ function render_balance_form(){
 			label:"支付方式"
 		}]
 	}
-	
 	render_form(form);
 }
 
@@ -67,3 +95,18 @@ function submit_add(){
 	});
 }
 
+
+function click_delete(obj){
+	if(confirm("确认删除?")){
+		var id = get_grid_row_id(obj);
+		$.ajax({
+		    url: "/finance/delBalance",
+		    data:{id:id},
+		    type:"post",
+		    success: function(a,b,c){
+		    	function_balance();
+		    },
+		    error: function(a,b,c){alert(a);}
+		});
+	}
+}

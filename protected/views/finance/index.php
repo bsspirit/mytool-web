@@ -31,17 +31,18 @@ $this->widget('zii.widgets.grid.CGridView', array(
 			'buttons'=>array(
 			 	'update'=>array(
 		           	'label'=>'编辑',
-		           	//'imageUrl'=>'',	
-        		   	//'url'=>'Yii::app()->controller->createUrl("/prod/detail",array("pid"=>$data->id))',
-		      		'options'=>array('onclick'=>'click_edit()'),
+		           	'imageUrl'=>'/css/update.png',	
+        		   	'url'=>'',
+		      		'options'=>array('onclick'=>'function_balance_edit(this)'),
 	            ),
-	            'delete'=>array(
+	            'del'=>array(
 		           	'label'=>'删除',	
-	            	//'imageUrl'=>'',
-		      		'options'=>array('onclick'=>'click_delete()'),
+	            	'imageUrl'=>'/css/delete.png',
+					'url'=>'',
+		      		'options'=>array('onclick'=>'click_delete(this)'),
 	            ),
              ),
-        	'template'=>'{update} {delete}',
+        	'template'=>'{update} {del}',
             'htmlOptions'=>array(
 		        'style'=>'width:80px;'
 		    ),
@@ -50,7 +51,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 )); ?>
 </div>
 
-<div id="balanceDialog" title="增加日记账">
+<div id="balanceDialog">
 	<div id="balance_form_add" class="form"></div>
 </div>
 

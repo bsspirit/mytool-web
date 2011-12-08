@@ -9,8 +9,10 @@
 	<link rel="stylesheet" href="/css/main.css" />
 	<link rel="stylesheet" href="/css/form.css" />
 	<link rel="stylesheet" href="/css/jquery-ui-1.8.16.css" />
+
 	<script src="/js/jquery-1.6.2.min.js"></script>
 	<script src="/js/jquery-ui-1.8.16.min.js"></script>
+	<script src="/js/jquery.ba-bbq.js"></script>
 	<script src="/js/mylib.js"></script>
 </head>
 <body>

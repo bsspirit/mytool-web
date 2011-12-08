@@ -19,7 +19,7 @@ class FinanceController extends Controller
 //				'users'=>array('*'),
 //			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','create','update','addBalance','jSONBalanceType','jSONBalanceMode'),
+				'actions'=>array('index','delBalance','addBalance','jSONBalance','jSONBalanceType','jSONBalanceMode'),
 				'users'=>array('@'),
 			),
 //			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -56,6 +56,31 @@ class FinanceController extends Controller
 			$json['success']=true;	
 		} 
 		echo CJSON::encode($json);
+		Yii::app()->end();
+	}
+	
+	/*
+	 * 删除一个日记账
+	 */
+	public function actionDelBalance(){
+		$id=$_POST['id'];
+		$json=array('success'=>false);
+		if(Yii::app()->request->isPostRequest){
+			if($this->loadModel($id)->delete()){
+				$json['success']=true;	
+			} 
+		}
+		echo CJSON::encode($json);
+		Yii::app()->end();
+	}
+	
+	/*
+	 * 查看一个日记账
+	 */
+	public function actionJSONBalance($id){
+		$id=$_GET['id'];
+		$model = $this->loadModel($id);
+		echo CJSON::encode($model);
 		Yii::app()->end();
 	}
 	
@@ -140,17 +165,16 @@ class FinanceController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		if(Yii::app()->request->isPostRequest)
-		{
+		//if(Yii::app()->request->isPostRequest)		{
 			// we only allow deletion via POST request
 			$this->loadModel($id)->delete();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
-				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-		}
-		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
+		//}
+		//else
+			//throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
 
