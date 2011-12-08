@@ -4,39 +4,31 @@ class FinanceController extends Controller
 {
 	public $layout='//layouts/column1';
 
-	public function filters()
-	{
+	public function filters(){
 		return array(
-			'accessControl', // perform access control for CRUD operations
+			'accessControl', 
 		);
 	}
 
-	public function accessRules()
-	{
+	public function accessRules(){
 		return array(
-//			array('allow',  // allow all users to perform 'index' and 'view' actions
-//				'actions'=>array('index','view'),
-//				'users'=>array('*'),
-//			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+			array('allow', 
 				'actions'=>array('index','delBalance','addBalance','jSONBalance','jSONBalanceType','jSONBalanceMode'),
 				'users'=>array('@'),
 			),
-//			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-//				'actions'=>array('admin','delete'),
-//				'users'=>array('admin'),
-//			),
-			array('deny',  // deny all users
+			array('deny',  
 				'users'=>array('*'),
 			),
 		);
 	}
 	
-	
+	/*
+	 * 日记账查询
+	 */
 	public function actionIndex(){	
 		$dataProvider=new CActiveDataProvider('FinanceBalance',array(
 			'criteria'=>array(
-				//'order'=>'date desc',
+				'order'=>'date desc',
 			),
 		));
 		$this->render('index',array(
