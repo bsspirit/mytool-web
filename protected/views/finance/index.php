@@ -1,10 +1,13 @@
 <div class="view">
 	<a href="javascript:void(0);" onclick="function_balance()">日记账</a>
-	<a href="javascript:void(0);" onclick="function_balance_add()">(增加)</a>
 </div>
 
 <div class="view">
 	<h1>日记账</h1>
+	<a href="javascript:void(0);" onclick="function_balance_add()">增加</a>|
+	<a href="javascript:void(0);" onclick="function_input_select()">收入</a>|
+	<a href="javascript:void(0);" onclick="function_output_select()">支出</a>
+	
 <?php 
 $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'finance-balance-grid',

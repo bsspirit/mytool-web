@@ -13,7 +13,7 @@ function function_balance(){
 		 url:$(this).attr('href'),
          success:function(data) {
         	 $.fn.yiiGridView.update('finance-balance-grid');
-         },
+         }
 	});
 }
 
@@ -96,7 +96,6 @@ function balance_submit(){
 	});
 }
 
-
 function click_delete(obj){
 	if(confirm("确认删除?")){
 		var id = get_grid_row_id(obj);
@@ -110,4 +109,21 @@ function click_delete(obj){
 		    error: function(a,b,c){alert(a);}
 		});
 	}
+}
+
+
+function function_input_select(){
+	$.fn.yiiGridView.update('finance-balance-grid',{
+		 type:'POST',
+		 url:$(this).attr('href'),
+		 data:{pay_type:"input"}
+	});
+}
+
+function function_output_select(){
+	$.fn.yiiGridView.update('finance-balance-grid',{
+		 type:'POST',
+		 url:$(this).attr('href'),
+		 data:{pay_type:"output"}
+	});
 }

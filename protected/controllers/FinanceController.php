@@ -13,7 +13,7 @@ class FinanceController extends Controller
 	public function accessRules(){
 		return array(
 			array('allow', 
-				'actions'=>array('index','delBalance','addBalance','jSONBalance','jSONBalanceType','jSONBalanceMode'),
+				'actions'=>array('index','admin','delBalance','addBalance','jSONBalance','jSONBalanceType','jSONBalanceMode'),
 				'users'=>array('@'),
 			),
 			array('deny',  
@@ -26,10 +26,17 @@ class FinanceController extends Controller
 	 * 日记账查询
 	 */
 	public function actionIndex(){	
+		$sort = new CSort;
+        $sort->attributes = array('id','date','money','pay_type');
+        $sort->defaultOrder = 'date DESC';
+        $sort->multiSort = true;
+		
+		$criteria=new CDbCriteria;
+	    $criteria->compare('pay_type',$_REQUEST["pay_type"],true);
+		
 		$dataProvider=new CActiveDataProvider('FinanceBalance',array(
-			'criteria'=>array(
-				'order'=>'date desc',
-			),
+			'criteria'=>$criteria,
+			'sort'=>$sort,
 		));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
