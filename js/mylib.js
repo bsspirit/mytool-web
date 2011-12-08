@@ -62,14 +62,23 @@ function render_form_area(id,label,css){
 function render_form_date(id,label,css){
 	var name=id;
 	if(css==undefined){css="w200";}
-	var value = ($('#'+id).attr('value')!=undefined)?value=$('#'+id).attr('value'):'';
+	
+	var value = new Date(); 
+	try{
+		if($('#'+id).attr('value')!=undefined){
+			var d = $.datepicker.parseDate('yymmdd', $('#'+id).attr('value'));
+			value = $.datepicker.formatDate('yy-mm-dd', d);
+		}
+	}catch(err){
+		//transform cast error
+	}
 	
 	var id_rad = id+'_'+getRandom(100);
 	var txt = label+': <input id="'+id_rad+'" type="text" name="'+name+'" class="'+css+'" value="'+value+'" />';
 	$('#'+id).html(txt);
 	
 	$('#'+id_rad).datepicker({dateFormat:'yy-mm-dd'});
-	$('#'+id_rad).datepicker('setDate', new Date());
+	$('#'+id_rad).datepicker('setDate', value);
 }
 
 
@@ -81,7 +90,7 @@ function render_form_list(obj,id,label,css){
 	
 	var	txt= label+':&nbsp;<select name="'+name+'" class="'+css+'">';
 		$.each(obj, function(key, val) {
-	    	txt+='<option value="'+val.id+'" '+(value==val.id?"seleted":"")+'>'+val.name+'</option>';
+	    	txt+='<option value="'+val.id+'" '+(value==val.id?'selected="selected"':'')+'>'+val.name+'</option>';
 	  	});
 		txt+='</select>';
 	$('#'+id).html(txt);
@@ -115,3 +124,5 @@ function http_url(url,https){
 	}
 	return protocol+"://"+url;
 }
+
+//=========Date========================
