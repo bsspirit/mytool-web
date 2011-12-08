@@ -34,7 +34,11 @@ class FinanceController extends Controller
 	
 	
 	public function actionIndex(){	
-		$dataProvider=new CActiveDataProvider('FinanceBalance');
+		$dataProvider=new CActiveDataProvider('FinanceBalance',array(
+			'criteria'=>array(
+				//'order'=>'id desc',
+			),
+		));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -45,7 +49,7 @@ class FinanceController extends Controller
 	 */
 	public function actionAddBalance(){
 		$model=new FinanceBalance;
-		$model['money']=FinanceUtil::yuan2Fen($_POST['balance_money']);
+		$model['money']=$_POST['balance_money'];
 		$model['description']=$_POST['balance_description'];
 		$model['date']=str_replace("-","",$_POST['balance_date']);
 		$model['pay_type']=$_POST['balance_pay_type'];

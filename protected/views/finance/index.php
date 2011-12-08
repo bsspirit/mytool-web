@@ -12,11 +12,9 @@ $this->widget('zii.widgets.grid.CGridView', array(
 	'columns'=>array(
 		'id',
 		'date',
+		'money',
 		array(
-			'header'=>'金额RMB元',
-			'value'=>'FinanceUtil::fen2Yuan($data->money)',
-		),
-		array(
+			'name'=>'pay_type',
 			'header'=>'收支类型',
 			'value'=>'FinanceUtil::pay_type($data->pay_type)',
 		),

@@ -36,7 +36,7 @@ CREATE TABLE t_website_order(
 CREATE TABLE t_finance_balance(
 	id int primary key auto_increment,
 	date int not null,
-	money int not null default 0,
+	money float not null default 0,
 	pay_type enum('input','output'),
 	pay_mode enum('cash','visa'),
 	description varchar(512) null,

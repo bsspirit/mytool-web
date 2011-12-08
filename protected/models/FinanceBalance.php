@@ -40,7 +40,8 @@ class FinanceBalance extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('date, create_time', 'required'),
-			array('date, money', 'numerical', 'integerOnly'=>true),
+			array('date', 'numerical', 'integerOnly'=>true),
+			array('money', 'numerical'),
 			array('pay_type', 'length', 'max'=>6),
 			array('pay_mode', 'length', 'max'=>4),
 			array('description', 'length', 'max'=>512),
@@ -69,7 +70,7 @@ class FinanceBalance extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'date' => '支付日期',
-			'money' => '金额',
+			'money' => '金额RMB(元)',
 			'pay_type' => '收支类型',
 			'pay_mode' => '支付方式',
 			'description' => '备注',
