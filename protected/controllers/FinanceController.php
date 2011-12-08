@@ -32,7 +32,7 @@ class FinanceController extends Controller
         $sort->multiSort = true;
 		
 		$criteria=new CDbCriteria;
-	    $criteria->compare('pay_type',$_GET["pay_type"],true);
+	    $criteria->compare('pay_type',$_POST['pay_type'],true);
 		
 		$dataProvider=new CActiveDataProvider('FinanceBalance',array(
 			'criteria'=>$criteria,

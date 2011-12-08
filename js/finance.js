@@ -10,10 +10,7 @@ $("#balanceDialog").dialog({
 function function_balance(){
 	$.fn.yiiGridView.update('finance-balance-grid',{
 		 type:'GET',
-		 url:$(this).attr('href'),
-         success:function(data) {
-        	 $.fn.yiiGridView.update('finance-balance-grid');
-         }
+		 url:$(this).attr('href')
 	});
 }
 
@@ -114,7 +111,7 @@ function click_delete(obj){
 
 function function_input_select(){
 	$.fn.yiiGridView.update('finance-balance-grid',{
-		 type:'GET',
+		 type:'POST',
 		 url:$(this).attr('href'),
 		 data:{pay_type:"input"}
 	});
@@ -122,7 +119,7 @@ function function_input_select(){
 
 function function_output_select(){
 	$.fn.yiiGridView.update('finance-balance-grid',{
-		 type:'GET',
+		 type:'POST',
 		 url:$(this).attr('href'),
 		 data:{pay_type:"output"}
 	});
