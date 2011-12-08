@@ -251,9 +251,11 @@ div.search-form
 #navigator .nav{text-align:left;margin:20px 0;}
 #navigator .nav h1{font: bold 14px Arial;color: #0066A4;}
 #navigator .nav ul{list-style:none outside none;}
-#navigator .nav li{width:200px;height:180px;margin:8px;text-align:left;}
+#navigator .nav li{width:200px;height:200px;margin:8px;text-align:left;position:relative;}
+#navigator .nav .bar{height:20px;}
+#navigator .nav .win{position:absolute;top:20px;}
 #navigator .nav .preview{width:180px;border:1px solid #999;padding:5px;}
-#navigator .nav .preview .clip{clip:rect(0px, 240px, 120px, 0px);position:relative;"}
+#navigator .nav .preview .clip{clip:rect(0px, 240px, 120px, 0px);position:relative;}
 #navigator .nav .info{text-align:left;}
 
 .form{margin:10px 5px;}

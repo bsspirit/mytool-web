@@ -19,6 +19,11 @@ function jsonpCallback(obj){
 		html +='<ul>';
 		$.each(v.pages,function(k1,v1){
 			html +='<li class="l">';
+			html +='<div class="bar">';
+			html +='<img src="/css/update.png"/>';
+			html +='<a href="javascript:void(0);" onclick="submit_delete('+v1.id+')"><img src="/css/delete.png"/></a>'
+			html +='</div>';
+			html +='<div class="win">';
 			html +='<a href="'+http_url(v1.url)+'" target="_blank">';
 			html +='<img src="'+v1.image+'" class="preview" />';
 			html +='</a>';
@@ -34,6 +39,7 @@ function jsonpCallback(obj){
 			html +='<span class="url">'+v1.url+'</span>';
 			html +='</a>';
 			html +='</div>';
+			html +='</div>';
 			html +='</li>';
 		});
 		
@@ -48,6 +54,7 @@ function jsonpCallback(obj){
 		$('#navigator').append(v);
 	});
 	
+	hover_bar();
 	click_fade();
 }
 
@@ -155,8 +162,36 @@ function submit_add2(){
 	    	alert(a);
 	    }
 	});
+}
+
+function submit_delete(id){
+	if(confirm("确认删除?")){
+		$.ajax({
+		    url: "/website/postDel",
+		    data:{id:id},
+		    type:"post",
+		    success: function(a,b,c){
+		    	navigatorHandler();
+		    },
+		    error: function(a,b,c){
+		    	alert(a);
+		    }
+		});
+	}
 	
-	
+}
+
+function hover_bar(){
+	$('#navigator .bar').each(function(idx){
+		var bar = $(this);
+		bar.hide();
+		
+		$(this).parent().hover(function(){
+			bar.show();
+		},function(){
+			bar.hide();
+		});
+	});
 }
 
 function click_fade(){
