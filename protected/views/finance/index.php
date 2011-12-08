@@ -11,7 +11,11 @@ $this->widget('zii.widgets.grid.CGridView', array(
 	'dataProvider'=>$dataProvider,
 	'columns'=>array(
 		'id',
-		'date',
+		array(
+			'name'=>'date',
+			'header'=>'日期',
+			'value'=>'FinanceUtil::int2Date($data->date)',
+		),
 		'money',
 		array(
 			'name'=>'pay_type',

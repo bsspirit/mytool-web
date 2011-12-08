@@ -36,7 +36,7 @@ class FinanceController extends Controller
 	public function actionIndex(){	
 		$dataProvider=new CActiveDataProvider('FinanceBalance',array(
 			'criteria'=>array(
-				//'order'=>'id desc',
+				//'order'=>'date desc',
 			),
 		));
 		$this->render('index',array(

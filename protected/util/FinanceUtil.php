@@ -19,6 +19,10 @@ class FinanceUtil{
 		return str_replace(".","",$yuan);
 	}
 	
+	public static function int2Date($date){
+		return substr($date,0,4).'-'.substr($date,4,2).'-'.substr($date,6);
+	}
+	
 	public static function pay_type($type){
 		$str='';
 		switch($type){
