@@ -24,7 +24,7 @@ function function_balance_add(){
 		html += '<div id="balance_description"></div>';
 		html += '<div id="balance_submit"></div>';
 		html += '</form>';
-	$('#balance_form_add').html(html);
+	$('#balance_form').html(html);
 	render_balance_form();
 	$('#balanceDialog').dialog('option','title','日记账增加');
 	$('#balanceDialog').dialog('open');
@@ -44,7 +44,7 @@ function function_balance_edit(obj){
 			html += '<div id="balance_submit"></div>';
 			html += '<input type="hidden" name="balance_id" value="'+id+'"/>';
 			html += '</form>';
-		$('#balance_form_add').html(html);
+		$('#balance_form').html(html);
 		render_balance_form();
 		$('#balanceDialog').dialog('option','title','日记账修改');
 		$('#balanceDialog').dialog('open');
@@ -56,7 +56,7 @@ function function_balance_edit(obj){
 function render_balance_form(){
 	var form = {
 		input:[{id:"balance_money",label:"支付金额"}],
-		area:[{id:"balance_description",label:"我的备注",css:"w300 h100"}],
+		area:[{id:"balance_description",label:"我的备注",css:"w300 h100",layout:{row:2}}],
 		date:[{id:"balance_date",label:"支付日期"}],
 		button:[{id:"balance_submit",label:"提交",css:"w80",onclick:"balance_submit()"}],
 		list:[{
@@ -76,7 +76,7 @@ function render_balance_form(){
 
 function balance_submit(){
 	var form = {};
-	$('#balance_form_add :input').each(function(k,v){
+	$('#balance_form :input').each(function(k,v){
 	 	form[v.name]=v.value;
 	});
 	$.ajax({

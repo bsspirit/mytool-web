@@ -57,7 +57,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 </div>
 
 <div id="balanceDialog">
-	<div id="balance_form_add" class="form"></div>
+	<div id="balance_form" class="form"></div>
 </div>
 
 <script src="/js/finance.js"></script>

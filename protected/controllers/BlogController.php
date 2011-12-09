@@ -2,15 +2,8 @@
 
 class BlogController extends Controller
 {
-	/**
-	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-	 * using two-column layout. See 'protected/views/layouts/column2.php'.
-	 */
-	public $layout='//layouts/column1';
+	public $layout='//layouts/column2';
 
-	/**
-	 * @return array action filters
-	 */
 	public function filters()
 	{
 		return array(
@@ -18,26 +11,21 @@ class BlogController extends Controller
 		);
 	}
 
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
 	public function accessRules()
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','addBlog','jSONBlogs'),
 				'users'=>array('*'),
 			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
+// 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+// 				'actions'=>array('create','update'),
+// 				'users'=>array('@'),
+// 			),
+// 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+// 				'actions'=>array('admin','delete'),
+// 				'users'=>array('admin'),
+// 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -54,7 +42,49 @@ class BlogController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
+	
+	public function actionIndex()
+	{
+		$dataProvider=new CActiveDataProvider('BlogContent');
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
+	
+	/*
+	 * 增加一个blog
+	 */
+	public function actionAddBlog(){
+		$model=isset($_POST['blog_id'])?$this->loadModel($_POST['blog_id']):new BlogContent;
+		
+		$model['title']=$_POST['blog_title'];
+		$model['content']=$_POST['blog_content'];
+		
+		$json=array('success'=>false);
+		if($model->save(false)){
+			$json['success']=true;
+		}
+		echo CJSON::encode($json);
+		Yii::app()->end();
+	}
+	
+	
+	/*
+	 * 查看Blog Feeds
+	 */
+	public function actionJSONBlogs(){
+		$sort = new CSort;
+		$sort->defaultOrder = 'create_time DESC';
+		$criteria=new CDbCriteria;
+		$dataProvider=new CActiveDataProvider('BlogContent',array(
+			'criteria'=>$criteria,
+			'sort'=>$sort,
+		));
+		echo $_GET['callback'] ."(" . CJSON::encode($dataProvider->getData()) .")";
+		Yii::app()->end();
+	}
 
+	//==============================================
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
@@ -125,13 +155,7 @@ class BlogController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('BlogContent');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
+
 
 	/**
 	 * Manages all models.

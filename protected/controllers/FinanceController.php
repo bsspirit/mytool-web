@@ -13,7 +13,7 @@ class FinanceController extends Controller
 	public function accessRules(){
 		return array(
 			array('allow', 
-				'actions'=>array('index','admin','delBalance','addBalance','jSONBalance','jSONBalanceType','jSONBalanceMode'),
+				'actions'=>array('index','delBalance','addBalance','jSONBalance','jSONBalanceType','jSONBalanceMode'),
 				'users'=>array('@'),
 			),
 			array('deny',  

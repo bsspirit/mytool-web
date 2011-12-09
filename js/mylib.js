@@ -2,29 +2,34 @@
 
 
 //======Form==================
-function render_form(form){
+function render_form(form,g){
 	for(var prop in form){
 		switch(prop){
 			case 'list':
 				$.each(form[prop],function(k,v){
 					$.getJSON(v.url,function(obj){
-					    render_form_list(obj,v.id,v.label);
+					    render_form_list(obj,v.id,v.label,v.css);
 					});
 				});
 				break;
 			case 'date':
 				$.each(form[prop],function(k,v){
-					render_form_date(v.id,v.label);
+					render_form_date(v.id,v.label,v.css);
 				});
 				break;
 			case 'input':
 				$.each(form[prop],function(k,v){
-					render_form_input(v.id,v.label);
+					render_form_input(v.id,v.label,v.css,v.layout);
 				});
 				break;
 			case 'area':
 				$.each(form[prop],function(k,v){
-					render_form_area(v.id,v.label,v.css);
+					render_form_area(v.id,v.label,v.css,v.layout);
+				});
+				break;
+			case 'editor':
+				$.each(form[prop],function(k,v){
+					render_form_editor(v.id,v.label,v.css,v.layout,g);
 				});
 				break;
 			case 'button':
@@ -37,29 +42,51 @@ function render_form(form){
 }
 
 //======Input=====================
-function render_form_input(id,label,css){
+function render_form_input(id,label,css,layout){
 	var name=id;
 	var value = ($('#'+id).attr('value')!=undefined)?value=$('#'+id).attr('value'):''; 
 	if(css==undefined){css="w200";}
+	var row = (layout!=undefined?(layout.row==2?'<br/>':''):'');
 	
 	var id_rad = id+'_'+getRandom(100);
-	var txt = label+': <input id="'+id_rad+'" type="text" name="'+name+'" class="'+css+'" value="'+value+'" />';
+	var txt = label+':&nbsp;'+row+'<input id="'+id_rad+'" type="text" name="'+name+'" class="'+css+'" value="'+value+'" />';
 	$('#'+id).html(txt);
 }
 
 //======Areatext========================
-function render_form_area(id,label,css){
+function render_form_area(id,label,css,layout){
 	var name=id;
 	if(css==undefined){css="w200";}
 	var value = ($('#'+id).attr('value')!=undefined)?value=$('#'+id).attr('value'):'';
+	var row = (layout!=undefined?(layout.row==2?'<br/>':''):'');
 	
 	var id_rad = id+'_'+getRandom(100);
-	var txt = label+': <br/><textarea id="'+id_rad+'" name="'+name+'" class="'+css+'" >'+value+'</textarea>';
+	var txt = label+':&nbsp;'+row+'<textarea id="'+id_rad+'" name="'+name+'" class="'+css+'" >'+value+'</textarea>';
 	$('#'+id).html(txt);
 }
 
+//======Editor========================
+function render_form_editor(id,label,css,layout,g){
+	var name=id;
+	var row = (layout!=undefined?(layout.row==2?'<br/>':''):'');
+	if(css==undefined){css="w200";}
+	
+	var id_rad = id+'_'+getRandom(100);
+	var txt = label+':&nbsp;'+row;
+		txt +='<textarea id="'+id_rad+'" name="'+name+'" class="'+css+'"></textarea>';
+	$('#'+id).html(txt);
+	
+	g['editor'][0] = KindEditor.create('textarea[#'+id_rad+']', {
+		uploadJson : '/blog/uploadImage',
+		fileManagerJson : 'manager',
+		allowFileManager : false,
+		width:700,
+		height:350
+	});
+}
+
 //======Date======================
-function render_form_date(id,label,css){
+function render_form_date(id,label,css,layout){
 	var name=id;
 	if(css==undefined){css="w200";}
 	
@@ -72,9 +99,9 @@ function render_form_date(id,label,css){
 	}catch(err){
 		//transform cast error
 	}
-	
+	var row = (layout!=undefined?(layout.row==2?'<br/>':''):'');
 	var id_rad = id+'_'+getRandom(100);
-	var txt = label+': <input id="'+id_rad+'" type="text" name="'+name+'" class="'+css+'" value="'+value+'" />';
+	var txt = label+':&nbsp;'+row+'<input id="'+id_rad+'" type="text" name="'+name+'" class="'+css+'" value="'+value+'" />';
 	$('#'+id).html(txt);
 	
 	$('#'+id_rad).datepicker({dateFormat:'yy-mm-dd'});
@@ -83,12 +110,13 @@ function render_form_date(id,label,css){
 
 
 //======Drop Down List =========
-function render_form_list(obj,id,label,css){
+function render_form_list(obj,id,label,css,layout){
 	var name=id;
 	if(css==undefined){css="w200";}
 	var value = ($('#'+id).attr('value')!=undefined)?value=$('#'+id).attr('value'):'';
+	var row = (layout!=undefined?(layout.row==2?'<br/>':''):'');
 	
-	var	txt= label+':&nbsp;<select name="'+name+'" class="'+css+'">';
+	var	txt= label+':&nbsp;'+row+'<select name="'+name+'" class="'+css+'">';
 		$.each(obj, function(key, val) {
 	    	txt+='<option value="'+val.id+'" '+(value==val.id?'selected="selected"':'')+'>'+val.name+'</option>';
 	  	});

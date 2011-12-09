@@ -241,11 +241,18 @@ div.search-form
 .w200{width:200px;}
 .w300{width:300px;}
 .w400{width:400px;}
+.w500{width:500px;}
+.w600{width:600px;}
+.w700{width:700px;}
+.w750{width:750px;}
 
+.h20{height:20px;}
+.h30{height:30px;}
 .h100{height:100px;}
 .h200{height:200px;}
 .h300{height:300px;}
 .h400{height:400px;}
+.h500{height:500px;}
 
 #navigator{text-align:center;margin:10px auto;}
 #navigator .nav{text-align:left;margin:20px 0;}
@@ -257,6 +264,12 @@ div.search-form
 #navigator .nav .preview{width:180px;border:1px solid #999;padding:5px;}
 #navigator .nav .preview .clip{clip:rect(0px, 240px, 120px, 0px);position:relative;}
 #navigator .nav .info{text-align:left;}
+
+#feed{}
+#feed .feed-title{font:bold 18px Arial;color: #0066A4;line-height:30px;margin-left:5px;}
+#feed .feed-title2{line-height:20px; border-bottom:1px solid #AAA;margin-left:5px;}
+#feed .feed-content{margin:10px 5px;}
+#feed .feed-act{margin:15px 5px;}
 
 .form{margin:10px 5px;}
 .form p{margin:0 0 0.5em;}

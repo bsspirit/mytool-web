@@ -1,3 +1,4 @@
+//初始化对话框
 window.onload = navigatorHandler;
 function navigatorHandler(){
 	$.ajax({
