@@ -30,9 +30,11 @@ class FinanceController extends Controller
         $sort->attributes = array('id','date','money','pay_type');
         $sort->defaultOrder = 'date DESC';
         $sort->multiSort = true;
-		
-		$criteria=new CDbCriteria;
-	    $criteria->compare('pay_type',$_POST['pay_type']);
+        
+        $criteria=new CDbCriteria;
+        if(isset($_POST['pay_type'])){
+        	$criteria->compare('pay_type',$_POST['pay_type'],true);
+        }
 		
 		$dataProvider=new CActiveDataProvider('FinanceBalance',array(
 			'criteria'=>$criteria,
