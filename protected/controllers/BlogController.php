@@ -15,7 +15,7 @@ class BlogController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','addBlog','jSONBlogs'),
+				'actions'=>array('index','view','addBlog','jSONBlogs','jSONBlog'),
 				'users'=>array('*'),
 			),
 // 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -81,6 +81,16 @@ class BlogController extends Controller
 			'sort'=>$sort,
 		));
 		echo $_GET['callback'] ."(" . CJSON::encode($dataProvider->getData()) .")";
+		Yii::app()->end();
+	}
+	
+	/*
+	* 查看一个Blog
+	*/
+	public function actionJSONBlog($id){
+		$id=$_GET['id'];
+		$model = $this->loadModel($id);
+		echo CJSON::encode($model);
 		Yii::app()->end();
 	}
 

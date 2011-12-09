@@ -70,6 +70,7 @@ function render_form_editor(id,label,css,layout,g){
 	var name=id;
 	var row = (layout!=undefined?(layout.row==2?'<br/>':''):'');
 	if(css==undefined){css="w200";}
+	var value = ($('#'+id).html()!=undefined)?$('#'+id).html():'';
 	
 	var id_rad = id+'_'+getRandom(100);
 	var txt = label+':&nbsp;'+row;
@@ -83,6 +84,8 @@ function render_form_editor(id,label,css,layout,g){
 		width:700,
 		height:350
 	});
+	
+	g['editor'][0].html(value);
 }
 
 //======Date======================

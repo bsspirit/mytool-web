@@ -13,7 +13,6 @@ function blogHandler(){
 	});
 }
 
-
 function function_blog_add(){
 	var html ='<form id="blog_form">';
 	html += '<div id="blog_title"></div>';
@@ -24,6 +23,22 @@ function function_blog_add(){
 	render_blog_form();
 	$('#blog_dialog').fadeIn();
 }
+
+function function_blog_edit(id){
+	var url = '/blog/JSONBlog/'+id;
+	$.getJSON(url,function(data){
+		var html ='<form id="blog_form">';
+		html += '<div id="blog_title" value="'+data.title+'"></div>';
+		html += '<div id="blog_content">'+data.content+'</div>';
+		html += '<div id="blog_submit"></div>';
+		html += '<input type="hidden" name="blog_id" value="'+id+'"/>';
+		html += '</form>';
+		$('#blog_form').html(html);
+		render_blog_form();
+		$('#blog_dialog').fadeIn();
+	});
+}
+
 
 function click_blog_close(){
 	$('#blog_dialog').fadeOut();
@@ -71,7 +86,8 @@ function function_blog_feed(obj){
 		html +='<div class="feed-title2">'+v.create_time+'</div>';
 		html +='<div class="feed-content">'+v.content+'</div>';
 		html +='<div class="feed-act">';
-		html +='<a href="javascript:void(0);" onclick="">编辑</a>&nbsp;&nbsp;';
+		html +='<a href="javascript:void(0);" onclick="function_blog_edit('+v.id+')">编辑</a>&nbsp;&nbsp;';
+		html +='<a href="javascript:void(0);" onclick="">删除</a>&nbsp;&nbsp;';
 		html +='<a href="javascript:void(0);" onclick="">回复</a>&nbsp;&nbsp;';
 		html +='<a href="javascript:void(0);" onclick="">评论</a>&nbsp;&nbsp;';
 		html +='</div>';
