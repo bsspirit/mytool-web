@@ -270,7 +270,7 @@ div.search-form
 #feed .feed-title2{line-height:20px; border-bottom:1px solid #AAA;margin-left:5px;}
 #feed .feed-content{margin:10px 5px;}
 #feed .feed-act{margin:15px 5px;}
-.feed-small{overflow: hidden;height:300px;}
+.feed-small{overflow:scroll;height:300px;}
 
 .form{margin:10px 5px;}
 .form p{margin:0 0 0.5em;}
