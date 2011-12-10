@@ -25,9 +25,11 @@ function jsonpCallback(obj){
 			html +='<a href="javascript:void(0);" onclick="submit_delete('+v1.id+')"><img src="/css/delete.png"/></a>'
 			html +='</div>';
 			html +='<div class="win">';
+			html +='<div class="pic">';
 			html +='<a href="'+http_url(v1.url)+'" target="_blank">';
 			html +='<img src="'+v1.image+'" class="preview" />';
 			html +='</a>';
+			html +='</div>';
 			html +='<div class="info">';
 			if(v1.icon != null){
 				html +='<img src="'+v1.icon+'" class="icon"/>';
