@@ -29,7 +29,7 @@
 				array('label'=>'我的理财', 'url'=>array('/finance'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'站工工具', 'url'=>array('/webtool'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'黑客工具', 'url'=>array('/hack'),'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'常用工具', 'url'=>array('/common'),'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'常用工具', 'url'=>array('/tool'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'登陆', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'退出 ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
