@@ -15,7 +15,7 @@ class BlogController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','addBlog','jSONBlogs','jSONBlog'),
+				'actions'=>array('index','view','addBlog','postDel','jSONBlogs','jSONBlog'),
 				'users'=>array('*'),
 			),
 // 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -95,6 +95,18 @@ class BlogController extends Controller
 		$id=$_GET['id'];
 		$model = $this->loadModel($id);
 		echo CJSON::encode($model);
+		Yii::app()->end();
+	}
+	
+	public function actionPostDel(){
+		$id=$_POST['id'];
+		$json=array('success'=>false);
+		if(Yii::app()->request->isPostRequest){
+			if($this->loadModel($id)->delete()){
+				$json['success']=true;	
+			} 
+		}
+		echo CJSON::encode($json);
 		Yii::app()->end();
 	}
 

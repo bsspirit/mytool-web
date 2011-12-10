@@ -83,6 +83,22 @@ function blog_submit(){
 	});
 }
 
+function submit_delete(id){
+	if(confirm("确认删除?")){
+		$.ajax({
+		    url: "/blog/postDel",
+		    data:{id:id},
+		    type:"post",
+		    success: function(a,b,c){
+		    	blogHandler();
+		    },
+		    error: function(a,b,c){
+		    	alert(a);
+		    }
+		});
+	}
+}
+
 function function_blog_feed(obj){
 	var html = '<div id="feed">';
 	$.each(obj,function(k,v){
@@ -93,7 +109,7 @@ function function_blog_feed(obj){
 		html +='<div class="feed-act">';
 		html +='<a href="javascript:void(0);" onclick="click_blog_show('+v.id+')">阅读全文</a>&nbsp;&nbsp;';
 		html +='<a href="javascript:void(0);" onclick="function_blog_edit('+v.id+')">编辑</a>&nbsp;&nbsp;';
-		html +='<a href="javascript:void(0);" onclick="">删除</a>&nbsp;&nbsp;';
+		html +='<a href="javascript:void(0);" onclick="submit_delete('+v.id+')">删除</a>&nbsp;&nbsp;';
 		html +='<a href="javascript:void(0);" onclick="">回复</a>&nbsp;&nbsp;';
 		html +='<a href="javascript:void(0);" onclick="">评论</a>&nbsp;&nbsp;';
 		html +='</div>';
