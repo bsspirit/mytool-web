@@ -17,7 +17,8 @@ function function_blog_add(){
 	var html ='<form id="blog_form">';
 	html += '<div id="blog_title"></div>';
 	html += '<div id="blog_content"></div>';
-	html += '<div id="blog_submit"></div>';
+	html += '<span id="blog_submit"></span>';
+	html += '<span id="blog_cancel"></span>';
 	html += '</form>';
 	$('#blog_form').html(html);
 	render_blog_form();
@@ -30,12 +31,15 @@ function function_blog_edit(id){
 		var html ='<form id="blog_form">';
 		html += '<div id="blog_title" value="'+data.title+'"></div>';
 		html += '<div id="blog_content">'+data.content+'</div>';
-		html += '<div id="blog_submit"></div>';
+		html += '<span id="blog_submit"></span>';
+		html += '<span id="blog_cancel"></span>';
 		html += '<input type="hidden" name="blog_id" value="'+id+'"/>';
 		html += '</form>';
 		$('#blog_form').html(html);
 		render_blog_form();
 		$('#blog_dialog').fadeIn();
+		
+		$("html,body").animate({scrollTop: $("#blog_form").offset().top}, 1000);
 	});
 }
 
@@ -53,7 +57,8 @@ function render_blog_form(){
 	var form = {
 		input:[{id:"blog_title",label:"标题",css:"w500 h20",layout:{row:2}}],
 		editor:[{id:"blog_content",label:"内容",layout:{row:2}}],
-		button:[{id:"blog_submit",label:"提交",css:"w80",onclick:"blog_submit()"}]
+		button:[{id:"blog_submit",label:"提交",css:"w80",onclick:"blog_submit()"},
+				{id:"blog_cancel",label:"取消",css:"w80",onclick:"click_blog_close()"}]
 	}
 	render_form(form,g);
 }
@@ -79,13 +84,14 @@ function blog_submit(){
 }
 
 function function_blog_feed(obj){
-	var html = '';
+	var html = '<div id="feed">';
 	$.each(obj,function(k,v){
-		html +='<div id="feed" class="view">';
+		html +='<div id="feed_'+v.id+'" class="view">';
 		html +='<div class="feed-title">'+v.title+'</div>';
 		html +='<div class="feed-title2">'+v.create_time+'</div>';
-		html +='<div class="feed-content">'+v.content+'</div>';
+		html +='<div class="feed-content feed-small">'+v.content+'</div>';
 		html +='<div class="feed-act">';
+		html +='<a href="javascript:void(0);" onclick="click_blog_showall('+v.id+')">阅读全文</a>&nbsp;&nbsp;';
 		html +='<a href="javascript:void(0);" onclick="function_blog_edit('+v.id+')">编辑</a>&nbsp;&nbsp;';
 		html +='<a href="javascript:void(0);" onclick="">删除</a>&nbsp;&nbsp;';
 		html +='<a href="javascript:void(0);" onclick="">回复</a>&nbsp;&nbsp;';
@@ -93,6 +99,11 @@ function function_blog_feed(obj){
 		html +='</div>';
 		html +='</div>';
 	});
+	html += '</div>';
 	$('#desktop').html(html);
+}
+
+function click_blog_showall(id){
+	$('#feed_'+id+' .feed-content').removeClass('feed-small');
 }
 

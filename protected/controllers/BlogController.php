@@ -75,7 +75,11 @@ class BlogController extends Controller
 	public function actionJSONBlogs(){
 		$sort = new CSort;
 		$sort->defaultOrder = 'create_time DESC';
+		
 		$criteria=new CDbCriteria;
+		$criteria->select = array('id', 'title', 'content', 'create_time');
+		
+		
 		$dataProvider=new CActiveDataProvider('BlogContent',array(
 			'criteria'=>$criteria,
 			'sort'=>$sort,
