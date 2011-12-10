@@ -89,9 +89,9 @@ function function_blog_feed(obj){
 		html +='<div id="feed_'+v.id+'" class="view">';
 		html +='<div class="feed-title">'+v.title+'</div>';
 		html +='<div class="feed-title2">'+v.create_time+'</div>';
-		html +='<div class="feed-content feed-small">'+v.content+'</div>';
+		html +='<div class="feed-content">'+v.content+'</div>';
 		html +='<div class="feed-act">';
-		html +='<a href="javascript:void(0);" onclick="click_blog_showall('+v.id+')">阅读全文</a>&nbsp;&nbsp;';
+		html +='<a href="javascript:void(0);" onclick="click_blog_show('+v.id+')">阅读全文</a>&nbsp;&nbsp;';
 		html +='<a href="javascript:void(0);" onclick="function_blog_edit('+v.id+')">编辑</a>&nbsp;&nbsp;';
 		html +='<a href="javascript:void(0);" onclick="">删除</a>&nbsp;&nbsp;';
 		html +='<a href="javascript:void(0);" onclick="">回复</a>&nbsp;&nbsp;';
@@ -101,9 +101,15 @@ function function_blog_feed(obj){
 	});
 	html += '</div>';
 	$('#desktop').html(html);
+	
+	$('#feed .feed-content').each(function(){
+		if($(this).height()>400){
+			$(this).addClass('feed-small');
+		}
+	});
 }
 
-function click_blog_showall(id){
+function click_blog_show(id){
 	$('#feed_'+id+' .feed-content').removeClass('feed-small');
 }
 
