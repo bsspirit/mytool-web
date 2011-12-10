@@ -269,8 +269,8 @@ div.search-form
 #feed .feed-title{font:bold 18px Arial;color: #0066A4;line-height:30px;margin-left:5px;}
 #feed .feed-title2{line-height:20px; border-bottom:1px solid #AAA;margin-left:5px;}
 #feed .feed-content{margin:10px 5px;}
-#feed .feed-act{margin:15px 5px;}
-.feed-small{overflow:hidden;height:200px;}
+#feed .feed-act{margin:25px 5px 15px;}
+.feed-small{overflow:scroll;overflow-x:hidden;height:200px;}
 
 .form{margin:10px 5px;}
 .form p{margin:0 0 0.5em;}
