@@ -1,7 +1,7 @@
 $(function(){
 
     // Specify the ZIP/location code and units (f or c)
-    var loc = '10001'; // or e.g. SPXX0050
+    var loc = '12578011'; // or e.g. SPXX0050
     var u = 'c';
 
     var query = "SELECT item.condition FROM weather.forecast WHERE location='" + loc + "' AND u='" + u + "'";
