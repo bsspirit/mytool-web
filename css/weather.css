@@ -1,4 +1,4 @@
-#wxWrap {
+#weather {
     width: 350px;
     background: #EEE; /* Old browsers */
     background: -moz-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(224,224,224,1) 100%); /* FF3.6+ */
@@ -13,22 +13,22 @@
     -moz-border-radius: 4px;
     border-radius: 4px;
 }
-#wxIntro {
+#city {
     display: inline-block;
     font: 14px/20px Arial,Verdana,sans-serif;
     color: #666;
     vertical-align: top;
     padding-top: 9px;
 }
-#wxIcon {
+#icon {
     display: inline-block;
     width: 61px;
     height: 34px;
     margin: 2px 0 -1px 1px;
     overflow: hidden;
-    background: url('http://l.yimg.com/a/lib/ywc/img/wicons.png') no-repeat 61px 0;
+    background: url('/css/wicons.png') no-repeat 61px 0;
 }
-#wxIcon2 {
+#icon2 {
     display: inline-block;
     width: 34px;
     height: 34px;
