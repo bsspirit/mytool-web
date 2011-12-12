@@ -49,3 +49,34 @@ CREATE TABLE t_blog_content(
 	content text null,
 	create_time TIMESTAMP default now()
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE t_dict_word(
+	word varchar(32) primary key,
+	create_time TIMESTAMP default now()
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE t_dict_tag(
+	name varchar(32) primary key,
+	create_time TIMESTAMP default now()
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE t_dict_tag_word(
+	id int primary key auto_increment,
+	name varchar(32) not null,
+	word varchar(32) not null,
+	unique(name,word),
+	create_time TIMESTAMP default now()
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE t_dict_explain(
+	id int primary key auto_increment,
+	word varchar(32) null,
+	type varchar(8) null,
+	word_cn varchar(64) null,
+	sentence varchar(256) null,
+	sentence_cn varchar(256) null,
+	create_time TIMESTAMP default now()
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
