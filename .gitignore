@@ -7,3 +7,4 @@ assets/*
 **/**/*.log
 **/**/**/*.log
 protected/runtime/*
+images/*

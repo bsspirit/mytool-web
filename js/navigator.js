@@ -103,6 +103,8 @@ function submit_add1(){
 	    type:"get",
 	    dataType:"jsonp",
         jsonp:"callback",
+        beforeSend:function(){$('#navigator_add_1').showLoading();},
+    	complete:function(){$('#navigator_add_1').hideLoading();},
         jsonpCallback: "render_add2",
 	    success: function(a,b,c){},
 	    error: function(a,b,c){}
