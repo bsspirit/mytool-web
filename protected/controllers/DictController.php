@@ -88,8 +88,7 @@ class DictController extends Controller
 		} else {
 			$word['word']=$_POST['dict_word'];
 		}
-		$word->save();
-		
+		$word->save(false);
 		
 		$tagword=DictTagWord::model()->find('tid=:tid and word=:word',
 			array(':tid'=>$_POST['dict_tag'],':word'=>$_POST['dict_word'])
