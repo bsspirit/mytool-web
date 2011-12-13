@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 't_dict_tag_word':
  * @property integer $id
- * @property string $name
+ * @property integer $tid
  * @property string $word
  * @property string $create_time
  */
@@ -36,11 +36,12 @@ class DictTagWord extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, word, create_time', 'required'),
-			array('name, word', 'length', 'max'=>32),
+			array('tid, word, create_time', 'required'),
+			array('tid', 'numerical', 'integerOnly'=>true),
+			array('word', 'length', 'max'=>32),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, word, create_time', 'safe', 'on'=>'search'),
+			array('id, tid, word, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,7 +53,6 @@ class DictTagWord extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			//'words'=>array(self::BELONGS_TO, 'DictWord', 'word'),
 		);
 	}
 
@@ -63,7 +63,7 @@ class DictTagWord extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
+			'tid' => 'Tid',
 			'word' => 'Word',
 			'create_time' => 'Create Time',
 		);
@@ -81,11 +81,11 @@ class DictTagWord extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('tid',$this->tid);
 		$criteria->compare('word',$this->word,true);
 		$criteria->compare('create_time',$this->create_time,true);
 
-		return new CActiveDataProvider($this, array(
+		return new CActiveDataProvider(get_class($this), array(
 			'criteria'=>$criteria,
 		));
 	}

@@ -20,7 +20,7 @@ class DictController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','jSONTags','jSONWordsByTag'),
+				'actions'=>array('index','view','addTagWord','jSONTags','jSONWordsByTag'),
 				'users'=>array('*'),
 			),
 			/*array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -78,6 +78,26 @@ class DictController extends Controller
 		}
 		echo CJSON::encode($j_words);
 		Yii::app()->end(); 
+	}
+	
+	/*
+	* 增加一个blog
+	*/
+	public function actionAddTagWord(){
+		$word=new DictWord;
+		$word['word']=$_POST['dict_word'];
+	
+		$json=array('success'=>false);
+		if($word->save(false)){
+			$tagword = new DictTagWord;
+			$tagword['tid']=$_POST['dict_tag'];
+			$tagword['word']=$_POST['dict_word'];
+			if($tagword->save(false)){
+				$json['success']=true;
+			}
+		}
+		echo CJSON::encode($json);
+		Yii::app()->end();
 	}
 
 	//=========================================
