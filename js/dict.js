@@ -23,7 +23,7 @@ function function_dist_tag(obj){
 		html += '<a href="javascript:void(0);" onclick="click_dict_tagword_add('+v.id+')"><span class="act">Add</span></a>';
 		html += '<a href="javascript:void(0);" onclick="click_dict_tagword_cancel('+v.id+')"><span class="act">Cancel</span></a>';
 		html += '<form id="form_dict_'+v.id+'" class="form">'
-		html += '<input type="text" class="w100" name="dict_word"/>';
+		html += '<input type="text" class="w200" name="dict_word"/>';
 		html += '<a href="javascript:void(0);" onclick="submit_dict_tagword_add('+v.id+')"><span class="act">Add</span></a>';
 		html += '<a href="javascript:void(0);" onclick="submit_dict_tagword_del('+v.id+')"><span class="act">Delete</span></a>';
 		html += '<input type="hidden" name="dict_tag" value="'+v.id+'"/>';
