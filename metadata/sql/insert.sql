@@ -42,12 +42,12 @@ insert into t_finance_balance(date, money, pay_type, pay_mode, description) valu
 
 insert into t_blog_content(title, content) values('还杨旭岚礼金','还杨旭岚礼金');
 
-insert into t_dict_tag(name) values('cet4');
-insert into t_dict_tag(name) values('machine learning');
+insert into t_dict_tag(id,name) values(1,'cet4');
+insert into t_dict_tag(id,name) values(2,'machine learning');
 insert into t_dict_word(word) values('abuse');
 insert into t_dict_word(word) values('mahout');
-insert into t_dict_tag_word(name,word) values('cet4','abuse');
-insert into t_dict_tag_word(name,word) values('machine learning','mahout');
+insert into t_dict_tag_word(tid,word) values(1,'abuse');
+insert into t_dict_tag_word(tid,word) values(2,'mahout');
 insert into t_dict_explain(word,type,word_cn,sentence,sentence_cn) values('abuse','n','滥用','This book is about uses and abuses of power.','本书讨论权力 的使用和滥用');
 insert into t_dict_explain(word,type,word_cn) values('mahout','n','驯象人');
 

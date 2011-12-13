@@ -48,74 +48,36 @@ class DictController extends Controller
 	 * 显示Tags
 	 */
 	public function actionJSONTags(){
-		/*$cats=WebsiteCatalog::model()->findAll();
-		$webs=Website::model()->findAll();
-		$j_cats=array();
-		foreach($cats as $row){
+		$tags=DictTag::model()->findAll();
+		$j_tags=array();
+		foreach($tags as $row){
 			$line = array(
 				'id'=>$row['id'],
 				'name'=>$row['name'],
-				'seq'=>$row['seq'],
-				'pages'=>array()
 			);
-			array_push($j_cats, $line);
+			array_push($j_tags, $line);
 		}
-		
-		foreach ($webs as $row){
-			$line = array(
-				'id'=>$row['id'],
-				'url'=>$row['url'],
-				'image'=>$row['image'],
-				'title'=>$row['title'],
-				'icon'=>$row['icon'],
-				'cid'=>$row['cid']
-			);
-			
-			for($i=0;$i<count($j_cats);$i++){
-				if($row['cid'] == $j_cats[$i]['id']){
-					array_push($j_cats[$i]['pages'],$line);
-				}
-			}
-		}
-		echo $_GET['callback'] . "(". CJSON::encode($j_cats) .")";
-		Yii::app()->end(); */
+		echo $_GET['callback'] . "(". CJSON::encode($j_tags) .")";
+		Yii::app()->end();
 	}
 	
 	/*
 	 * 查单词通过tag
 	 */
-	public function actionJSONWordsByTag($tag){
-		/*$cats=WebsiteCatalog::model()->findAll();
-		$webs=Website::model()->findAll();
-		$j_cats=array();
-		foreach($cats as $row){
-			$line = array(
-				'id'=>$row['id'],
-				'name'=>$row['name'],
-				'seq'=>$row['seq'],
-				'pages'=>array()
-			);
-			array_push($j_cats, $line);
-		}
+	public function actionJSONWordsByTag($tid){
+		$words=DictTagWord::model()->findAll('tid=:tid',
+			array(':tid'=>$tid)
+		);
 		
-		foreach ($webs as $row){
+		$j_words=array();
+		foreach($words as $row){
 			$line = array(
-				'id'=>$row['id'],
-				'url'=>$row['url'],
-				'image'=>$row['image'],
-				'title'=>$row['title'],
-				'icon'=>$row['icon'],
-				'cid'=>$row['cid']
+				'word'=>$row['word'],
 			);
-			
-			for($i=0;$i<count($j_cats);$i++){
-				if($row['cid'] == $j_cats[$i]['id']){
-					array_push($j_cats[$i]['pages'],$line);
-				}
-			}
+			array_push($j_words, $line);
 		}
-		echo $_GET['callback'] . "(". CJSON::encode($j_cats) .")";
-		Yii::app()->end(); */
+		echo CJSON::encode($j_words);
+		Yii::app()->end(); 
 	}
 
 	//=========================================

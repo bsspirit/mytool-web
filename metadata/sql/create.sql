@@ -56,21 +56,23 @@ CREATE TABLE t_dict_word(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE t_dict_tag(
-	name varchar(32) primary key,
+	id int primary key auto_increment,
+	name varchar(32) unique not null,
 	create_time TIMESTAMP default now()
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE t_dict_tag_word(
 	id int primary key auto_increment,
-	name varchar(32) not null,
+	tid int not null,
 	word varchar(32) not null,
-	unique(name,word),
+	unique(tid,word),
 	create_time TIMESTAMP default now()
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE t_dict_explain(
 	id int primary key auto_increment,
 	word varchar(32) null,
+	phonet varchar(32) null,
 	type varchar(8) null,
 	word_cn varchar(64) null,
 	sentence varchar(256) null,
