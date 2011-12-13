@@ -20,7 +20,7 @@ class DictController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','addTagWord','jSONTags','jSONWordsByTag'),
+				'actions'=>array('index','view','addTagWord','delTagWord','jSONTags','jSONWordsByTag'),
 				'users'=>array('*'),
 			),
 			/*array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -38,10 +38,7 @@ class DictController extends Controller
 	}
 	
 	public function actionIndex(){
-//		$dataProvider=new CActiveDataProvider('DictWord');
-		$this->render('index',array(
-			//'dataProvider'=>$dataProvider,
-		));
+		$this->render('index',array());
 	}
 	
 	/*
@@ -81,20 +78,43 @@ class DictController extends Controller
 	}
 	
 	/*
-	* 增加一个blog
+	* 增加一个tag word
 	*/
 	public function actionAddTagWord(){
+		//$word = DictWord::model()->findByPk($_POST['dict_word']);
 		$word=new DictWord;
 		$word['word']=$_POST['dict_word'];
-	
-		$json=array('success'=>false);
-		if($word->save(false)){
+		$word->save();
+		
+		$tagword=DictTagWord::model()->find('tid=:tid and word=:word',
+			array(':tid'=>$_POST['dict_tag'],':word'=>$_POST['dict_word'])
+		);
+		
+		if(empty($tagword)){
 			$tagword = new DictTagWord;
 			$tagword['tid']=$_POST['dict_tag'];
 			$tagword['word']=$_POST['dict_word'];
-			if($tagword->save(false)){
-				$json['success']=true;
-			}
+		} else {
+			$tagword['word']=$_POST['dict_word'];
+		}
+		
+		$json=array('success'=>false);
+		if($tagword->save(false)){
+			$json['success']=true;
+		}
+		
+		echo CJSON::encode($json);
+		Yii::app()->end();
+	}
+	
+	/*
+	* 删除一个tag word
+	*/
+	public function actionDelTagWord(){
+		$json=array('success'=>false);
+		$tagword=DictTagWord::model()->find('tid=:tid and word=:word',array(':tid'=>$_POST['dict_tag'],':word'=>$_POST['dict_word']));
+		if($tagword->delete()){
+			$json['success']=true;
 		}
 		echo CJSON::encode($json);
 		Yii::app()->end();

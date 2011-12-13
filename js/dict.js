@@ -25,11 +25,11 @@ function function_dist_tag(obj){
 		html += '<form id="form_dict_'+v.id+'" class="form">'
 		html += '<input type="text" class="w100" name="dict_word"/>';
 		html += '<a href="javascript:void(0);" onclick="submit_dict_tagword_add('+v.id+')"><span class="act">Add</span></a>';
+		html += '<a href="javascript:void(0);" onclick="submit_dict_tagword_del('+v.id+')"><span class="act">Delete</span></a>';
 		html += '<input type="hidden" name="dict_tag" value="'+v.id+'"/>';
 		html += '</form>';
 		html += '</div>';
-		html += '<ul id="'+v.id+'_words" class="words">';
-		html += '</ul>';
+		html += '<ul id="'+v.id+'_words" class="words"></ul>';
 		html += '<div class="c"></div>';
 		html += '</div>';
 		tags_arr.push(v.id);
@@ -51,6 +51,13 @@ function getDictWords(tag){
 			html += '<li>'+v.word+'</li>';
 		});
 		$('#'+tag+'_words').html(html);
+		
+		$('#'+tag+'_words li').dblclick(function(){
+			var txt = $(this).text();
+			var aa = $('#form_dict_'+tag +' input[name="dict_word"]').val(txt);
+			$('#form_dict_'+tag).show();
+		});
+		
 	});
 }
 
@@ -73,6 +80,24 @@ function submit_dict_tagword_add(tag){
 	});
 	$.ajax({
 	    url: "/dict/addTagWord",
+	    type:"post",
+	    data:form,
+	    success: function(a,b,c){
+	    	getDictWords(tag);
+	    },
+	    error: function(a,b,c){
+	    	alert('服务器出錯了。');
+	    }
+	});
+}
+
+function submit_dict_tagword_del(tag){
+	var form = {};
+	$('#form_dict_'+tag+' :input').each(function(k,v){
+	 	form[v.name]=v.value;
+	});
+	$.ajax({
+	    url: "/dict/delTagWord",
 	    type:"post",
 	    data:form,
 	    success: function(a,b,c){
