@@ -81,10 +81,15 @@ class DictController extends Controller
 	* 增加一个tag word
 	*/
 	public function actionAddTagWord(){
-		//$word = DictWord::model()->findByPk($_POST['dict_word']);
-		$word=new DictWord;
-		$word['word']=$_POST['dict_word'];
+		$word = DictWord::model()->findByPk($_POST['dict_word']);
+		if(empty($word)){
+			$word=new DictWord;
+			$word['word']=$_POST['dict_word'];
+		} else {
+			$word['word']=$_POST['dict_word'];
+		}
 		$word->save();
+		
 		
 		$tagword=DictTagWord::model()->find('tid=:tid and word=:word',
 			array(':tid'=>$_POST['dict_tag'],':word'=>$_POST['dict_word'])
