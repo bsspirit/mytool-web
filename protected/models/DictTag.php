@@ -81,7 +81,7 @@ class DictTag extends CActiveRecord
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('create_time',$this->create_time,true);
 
-		return new CActiveDataProvider(get_class($this), array(
+		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}

@@ -70,6 +70,7 @@ class DictController extends Controller
 		foreach($words as $row){
 			$line = array(
 				'word'=>$row['word'],
+				'word_cn'=>$row['dword']['phonet'],
 			);
 			array_push($j_words, $line);
 		}

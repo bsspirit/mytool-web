@@ -52,6 +52,7 @@ CREATE TABLE t_blog_content(
 
 CREATE TABLE t_dict_word(
 	word varchar(32) primary key,
+	phonet varchar(32) null,
 	create_time TIMESTAMP default now()
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -72,7 +73,6 @@ CREATE TABLE t_dict_tag_word(
 CREATE TABLE t_dict_explain(
 	id int primary key auto_increment,
 	word varchar(32) null,
-	phonet varchar(32) null,
 	type varchar(8) null,
 	word_cn varchar(64) null,
 	sentence varchar(256) null,

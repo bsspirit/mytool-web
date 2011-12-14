@@ -5,6 +5,8 @@
  *
  * The followings are the available columns in table 't_dict_word':
  * @property string $word
+ * @property string $word_cn
+ * @property string $phonet
  * @property string $create_time
  */
 class DictWord extends CActiveRecord
@@ -35,10 +37,10 @@ class DictWord extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('word, create_time', 'required'),
-			array('word', 'length', 'max'=>32),
+			array('word, phonet', 'length', 'max'=>32),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('word, create_time', 'safe', 'on'=>'search'),
+			array('word, word_cn, phonet, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,7 +52,6 @@ class DictWord extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			//'tags'=>array(self::HAS_MANY, 'DictTagWord', 'word'),
 		);
 	}
 
@@ -61,6 +62,7 @@ class DictWord extends CActiveRecord
 	{
 		return array(
 			'word' => 'Word',
+			'phonet' => 'Phonet',
 			'create_time' => 'Create Time',
 		);
 	}
@@ -77,6 +79,7 @@ class DictWord extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('word',$this->word,true);
+		$criteria->compare('phonet',$this->phonet,true);
 		$criteria->compare('create_time',$this->create_time,true);
 
 		return new CActiveDataProvider($this, array(
