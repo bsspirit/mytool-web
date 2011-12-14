@@ -1,0 +1,1 @@
+ALTER TABLE t_blog_content CHANGE content content MEDIUMTEXT NULL ;//給content增加长度
