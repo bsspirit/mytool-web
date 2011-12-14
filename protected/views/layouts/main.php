@@ -10,7 +10,6 @@
 	<link rel="stylesheet" href="/css/form.css" />
 	<link rel="stylesheet" href="/css/jquery-ui-1.8.16.css" />
 	<link rel="stylesheet" href="/js/showLoading/showLoading.css" />
-
 	<script src="/js/jquery-1.6.2.min.js"></script>
 	<script src="/js/jquery-ui-1.8.16.min.js"></script>
 	<script src="/js/jquery.ba-bbq.js"></script>
@@ -30,9 +29,11 @@
 				array('label'=>'我的博客', 'url'=>array('/blog'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'我的理财', 'url'=>array('/finance'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'我的词典', 'url'=>array('/dict'),'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'站工工具', 'url'=>array('/webtool'),'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'我的日程', 'url'=>array('/event'),'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'站长工具', 'url'=>array('/webtool'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'黑客工具', 'url'=>array('/hack'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'常用工具', 'url'=>array('/tool'),'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'系统设置', 'url'=>array('/system'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'登陆', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'退出 ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
