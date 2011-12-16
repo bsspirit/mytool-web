@@ -29,6 +29,7 @@
 				array('label'=>'我的博客', 'url'=>array('/blog'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'我的理财', 'url'=>array('/finance'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'我的词典', 'url'=>array('/dict'),'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'我的名片', 'url'=>array('/contact'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'我的日程', 'url'=>array('/event'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'站长工具', 'url'=>array('/webtool'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'黑客工具', 'url'=>array('/hack'),'visible'=>!Yii::app()->user->isGuest),

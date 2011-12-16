@@ -284,6 +284,25 @@ div.search-form
 #dict .tag ul{list-style:none outside none;padding:0;margin:5px 0;}
 #dict .tag ul li{float:left;height:18x;margin:2px 10px;text-align:left;}
 
+#weather {
+    width: 230px;
+    background: #EEE;
+    padding: 2px 13px 2px 11px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+#weather .current{height:45px;margin:2px;border-bottom:1px solid #6FACCF;}
+#weather .current .loc{font: bold 24px Arial;color:#0066A4;margin:5px;width:60px;}
+#weather .current .info{line-height:20px;}
+#weather .future{height:60px;margin:5px 2px;border-bottom:1px solid #6FACCF;}
+#weather .future ul{margin:0;padding:0;}
+#weather .future ul li{list-style:none;height:18px;margin:2px;text-align:left;}
+#weather .addr{height:20px;margin:5px 2px;border-bottom:1px solid #6FACCF;}
+#weather .addr ul{margin:0;padding:0;}
+#weather .addr ul li{float:left;list-style:none;margin:2px 5px 2px 0;height:18px;}
+#weather .version{height:16px;margin:5px 2px;}
+
 .form{margin:10px 5px;}
 .form p{margin:0 0 0.5em;}
 .ii_text{width:380px;}

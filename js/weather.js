@@ -23,12 +23,36 @@ function weatherCallback () {
  	var today = new Date();
  	var results = data.query.results;
  	var item = results.channel.item;
+ 	
+ 	var txt = '<div class="current">';
+ 		txt += '<div class="loc l">北京</div>';
+ 		txt += '<div class="info">'+$.datepicker.formatDate('yy-mm-dd', today)+','+item.condition.text+','+item.condition.temp+'°C</div>';
+ 		txt += '<div class="info">('+item.lat+','+item.long+'),风力:4</div>';
+ 		txt += '</div>';
+ 		txt += '<div class="future">';
+ 		txt += '<ul>';
+ 		txt += '<li>2011-11-12,睛,6C|12C</li>';
+ 		txt += '<li>2011-11-13,睛,6C|12C</li>';
+ 		txt += '<li>2011-11-14,睛,6C|12C</li>';
+ 		txt += '</ul>';
+ 		txt += '</div>';
+ 		txt += '<div class="addr">';
+ 		txt += '<ul>';
+ 		txt += '<li>上海</li>';
+ 		txt += '<li>广州</li>';
+ 		txt += '<li>天津</li>';
+ 		txt += '<li>重庆</li>';
+ 		txt += '</ul>';
+ 		txt += '</div>';
+ 		txt += '<div class="version">';
+ 		txt += '发布日期:'+$.datepicker.formatDate('yy-mm-dd', new Date(item.pubDate))+'. Yahoo Weather.';
+ 		txt += '</div>';
+ 	
+ 	$('#weather').html(txt);
     
-    $('#city').html("北京("+item.lat+","+item.long+"), "+$.datepicker.formatDate('yy-mm-dd', today)+":");
-    $('#icon').css({backgroundPosition: '-' + (61 * item.condition.code) + 'px 0'}).attr({title: item.condition.text});
-    $('#icon2').append('<img src="http://l.yimg.com/a/i/us/we/52/' + item.condition.code + '.gif" width="34" height="34" title="' + item.condition.text + '" />');
-    
-    //$('#wxTemp').html(info.temp + '&deg;' + (u.toUpperCase()));
-    
-    $('#create_time').html("发布时间:"+item.pubDate);
+//    $('#city').html("北京("+item.lat+","+item.long+"), "+$.datepicker.formatDate('yy-mm-dd', today)+":");
+//    $('#icon').css({backgroundPosition: '-' + (61 * item.condition.code) + 'px 0'}).attr({title: item.condition.text});
+//    $('#icon2').append('<img src="http://l.yimg.com/a/i/us/we/52/' + item.condition.code + '.gif" width="34" height="34" title="' + item.condition.text + '" />');
+//    $('#icon3').append(item.condition.temp+"°C"+","+item.condition.text);
+//    $('#create_time').html("发布时间:"+item.pubDate);
 };
