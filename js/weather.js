@@ -1,4 +1,4 @@
-window.onload = weatherHandler;
+//window.onload = weatherHandler();
 
 function weatherHandler(code){
 	var	loc = 'CHXX0008';//china-weather-location
