@@ -256,6 +256,8 @@ div.search-form
 .h400{height:400px;}
 .h500{height:500px;}
 
+.red{color:red};
+
 #navigator{text-align:center;margin:10px auto;}
 #navigator .nav{text-align:left;margin:20px 0;}
 #navigator .nav h1{font: bold 14px Arial;color: #0066A4;}
@@ -285,15 +287,15 @@ div.search-form
 #dict .tag ul li{float:left;height:18x;margin:2px 10px;text-align:left;}
 
 #weather {
-    width: 230px;
+    width: 280px;
     background: #EEE;
     padding: 2px 13px 2px 11px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
 }
-#weather .current{height:45px;margin:2px;border-bottom:1px solid #6FACCF;}
-#weather .current .loc{font: bold 24px Arial;color:#0066A4;margin:5px;width:60px;}
+#weather .current{height:60px;margin:2px;border-bottom:1px solid #6FACCF;}
+#weather .current .loc{font: bold 24px Arial;color:#0066A4;margin:5px;width:120px;}
 #weather .current .info{line-height:20px;}
 #weather .future{height:60px;margin:5px 2px;border-bottom:1px solid #6FACCF;}
 #weather .future ul{margin:0;padding:0;}
