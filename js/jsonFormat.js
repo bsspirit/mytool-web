@@ -1,4 +1,11 @@
-window.onload = jsonHandler;
+window.onload = jsonHandler();
+//$('#jsonFormat').hide();
+
+$("#click_json").toggle(function(){
+	$('#jsonFormat').fadeIn();
+},function(){
+	$('#jsonFormat').fadeOut();
+});
 
 function jsonHandler(){
 	var json = '{"distance": "km","pressure": "mb", "speed": "km/h", "temperature": "C"}';
@@ -14,6 +21,8 @@ function json_format(){
 		if(json == "") json = "\"\"";
  		var obj = eval("["+json+"]");
  		$("#jsonFormat .canvas").html(json);
+ 		
+ 		
  	}catch(e){
  		alert("JSON is not well formated:\n"+e.message);
  		$("#jsonFormat .canvas").html("");

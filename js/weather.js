@@ -1,4 +1,11 @@
 //window.onload = weatherHandler();
+$('#weather').hide();
+
+$("#click_weather").toggle(function(){
+	$('#weather').fadeIn();
+},function(){
+	$('#weather').fadeOut();
+});
 
 function weatherHandler(code){
 	var	loc = 'CHXX0008';//china-weather-location

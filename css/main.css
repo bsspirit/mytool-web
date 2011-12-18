@@ -307,7 +307,7 @@ div.search-form
 
 #jsonFormat{} 
 #jsonFormat .rawjson {height: 150px;width: 99%;}
-#jsonFormat .canvas{margin:5px;background:#EEE;padding: 2px 13px 2px 11px;}
+#jsonFormat .canvas{margin:10px 0;background:#EEE;padding:2px 13px 2px 11px;}
 
 .form{margin:10px 5px;}
 .form p{margin:0 0 0.5em;}
