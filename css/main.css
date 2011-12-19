@@ -312,6 +312,7 @@ div.search-form
 #jsonFormat .canvas .str{color: #007777;}
 #jsonFormat .canvas .num{color: #AA00AA;}
 #jsonFormat .canvas .bool{color: #0000FF;}
+#jsonFormat .canvas .null{color: #000000;}
 
 
 .form{margin:10px 5px;}

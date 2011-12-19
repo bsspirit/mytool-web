@@ -8,21 +8,29 @@ $("#click_json").toggle(function(){
 });
 
 function jsonHandler(){
-	var json = '{"distance": "k121m","distance2": {"km":"anb","km2":"anb"},"pressure": "mb", "speed": "km/h", "temperature": "C"}';
-	var html = '<textarea class="rawjson">'+json+'</textarea>';
+	var json = '[{"distance": "k121m","distance2": {"km":"anb","km2":"anb"},"pressure": "mb", "speed": "km/h", "temperature": "C"},{"distance": "k121m"}]';
+	var html = '<input type="text" name="url" class="w400"/>'; 
+		html+= '<input type="button" value="Http-JSON" onclick="json_http()" />';
+		html+= '<textarea class="rawjson">'+json+'</textarea>';
 		html+= '<input type="button" value="格式化" onclick="json_format()"/>';
 		html+= '<div class="canvas"></div>'
 	$('#jsonFormat').html(html);
+}
+
+function json_http(){
+	var url = "/dict/jSONWordsByTag/tid/"+1;
+	$.get(url,function(data){
+		$('#jsonFormat .rawjson').val(data);
+	});
 }
 
 function json_format(){
 	var json = $('#jsonFormat .rawjson').val();
 	try{
 		if(json == "") json = "\"\"";
- 		var obj = eval("["+json+"]");
- 		//$("#jsonFormat .canvas").html(json);
+ 		var obj = eval("("+json+")");
+ 		var html = json_obj(obj);
  		
- 		var html = json_obj(obj[0]);		
  		$("#jsonFormat .canvas").html(html);
  		
  	}catch(e){
@@ -38,9 +46,10 @@ function json_obj(obj){
 }
 
 function json_loop(obj,idx){
-	var output="{<br/>";
+	var type = json_type(obj);
+	var output=style_bracket_start(type)+"<br/>";
 	$.each(obj,function(k,v){
-		if(typeof(v) == 'object'){
+		if(typeof(v) == 'object' && v!=null){
 			output += json_deep(idx)+style_prop(k)+":";
 			output += json_loop(v,++idx);
 			--idx;
@@ -51,7 +60,7 @@ function json_loop(obj,idx){
  	
  	var comma = output.lastIndexOf(',');
  	output = output.substring(0,comma)+output.substring(comma+1);
- 	output += json_deep(idx-1)+"},<br/>";
+ 	output += json_deep(idx-1)+style_bracket_end(type)+",<br/>";
  	return output;
 }
 
@@ -62,6 +71,38 @@ function json_deep(idx){
 	}
 	return space;
 }
+
+function json_type(obj){
+	var type="object";
+	if(obj instanceof Array){
+		type="array";
+	} else if(obj instanceof Object){
+		type="object";
+	}
+	return type;
+}
+
+function style_bracket_start(type){
+	var val="";
+	if(type == 'array'){
+		val = '[';
+	} else if(type == 'object'){
+		val = '{';
+	}
+	return val;
+}
+
+function style_bracket_end(type){
+	var val="";
+	if(type == 'array'){
+		val = ']';
+	} else if(type == 'object'){
+		val = '}';
+	}
+	return val;
+}
+
+
 
 function style_prop(k){
 	return '<span class="prop">\"'+k+'\"</span>';
@@ -75,6 +116,10 @@ function style_val(v){
 		val='<span class="num">'+v+'</span>';
 	} else if (typeof(v) == 'boolean'){
 		val='<span class="bool">'+v+'</span>';
+	} 
+	
+	if (v == null){
+		val='<span class="null">null</span>';
 	}
 	return val;
 }
