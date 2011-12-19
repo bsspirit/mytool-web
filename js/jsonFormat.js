@@ -9,7 +9,7 @@ $("#click_json").toggle(function(){
 
 function jsonHandler(){
 	var json = '[{"distance": "k121m","distance2": {"km":"anb","km2":"anb"},"pressure": "mb", "speed": "km/h", "temperature": "C"},{"distance": "k121m"}]';
-	var html = '<input type="text" name="url" class="w400"/>'; 
+	var html = '<input type="text" name="urljson" class="w500" value="http://loc.wtmart.com/dict/jSONWordsByTag/tid/1"/>'; 
 		html+= '<input type="button" value="Http-JSON" onclick="json_http()" />';
 		html+= '<textarea class="rawjson">'+json+'</textarea>';
 		html+= '<input type="button" value="格式化" onclick="json_format()"/>';
@@ -18,7 +18,7 @@ function jsonHandler(){
 }
 
 function json_http(){
-	var url = "/dict/jSONWordsByTag/tid/"+1;
+	var url = $('#jsonFormat input[name=urljson]').val();
 	$.get(url,function(data){
 		$('#jsonFormat .rawjson').val(data);
 	});
