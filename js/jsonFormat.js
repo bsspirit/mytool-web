@@ -8,9 +8,10 @@ $("#click_json").toggle(function(){
 });
 
 function jsonHandler(){
+	var url = "http://p.tianji.com/profile/jsonp/getContactCardByUserId/26978509?L=zh_CN&_=1324363354371";
 	var json = '[{"distance": "k121m","distance2": {"km":"anb","km2":"anb"},"pressure": "mb", "speed": "km/h", "temperature": "C"},{"distance": "k121m"}]';
-	var html = '<input type="text" name="urljson" class="w500" value="http://loc.wtmart.com/dict/jSONWordsByTag/tid/1"/>'; 
-		html+= '<input type="button" value="Http-JSON" onclick="json_http()" />';
+	var html = '<input type="text" name="urljson" class="w500" value="'+url+'"/>'; 
+		html+= '<input type="button" value="JSONP" onclick="json_http()" />';
 		html+= '<textarea class="rawjson">'+json+'</textarea>';
 		html+= '<input type="button" value="格式化" onclick="json_format()"/>';
 		html+= '<div class="canvas"></div>'
@@ -19,9 +20,22 @@ function jsonHandler(){
 
 function json_http(){
 	var url = $('#jsonFormat input[name=urljson]').val();
-	$.get(url,function(data){
-		$('#jsonFormat .rawjson').val(data);
+	$.ajax({
+	    url: url,
+	    type:"get",
+	    dataType:"jsonp",
+        jsonp:"callback",
+        jsonpCallback: "jsonp_http_callback",
+	    success: function(a,b,c){},
+	    error: function(a,b,c){}
 	});
+	
+	
+}
+
+function jsonp_http_callback(obj){
+	var html = json_obj_string(obj);
+	$('#jsonFormat .rawjson').val(html);
 }
 
 function json_format(){
@@ -30,15 +44,38 @@ function json_format(){
 		if(json == "") json = "\"\"";
  		var obj = eval("("+json+")");
  		var html = json_obj(obj);
- 		
  		$("#jsonFormat .canvas").html(html);
- 		
  	}catch(e){
  		alert("JSON is not well formated:\n"+e.message);
  		$("#jsonFormat .canvas").html("");
  	} 
 }
 
+//纯转换
+function json_obj_string(obj){
+	var txt = json2String(obj);
+	var comma = txt.lastIndexOf(',');
+ 	return txt.substring(0,comma)+txt.substring(comma+1);
+}
+
+function json2String(obj){
+	var type = json_type(obj);
+	var output=style_bracket_start(type);
+	$.each(obj,function(k,v){
+		if(typeof(v) == 'object' && v!=null){
+			output += ((type!='array')?'\"'+k+'\":':'')+json2String(v);
+		} else {
+			output += ((type!='array')?'\"'+k+'\":':'')+((typeof(v)=='string')?'\"'+v+'\"':v)+",";
+		}
+ 	});
+ 	
+ 	var comma = output.lastIndexOf(',');
+ 	output = output.substring(0,comma)+output.substring(comma+1);
+ 	output += style_bracket_end(type)+",";
+ 	return output;
+}
+
+//增加标签
 function json_obj(obj){
 	var txt = json_loop(obj,1);
 	var comma = txt.lastIndexOf(',');
@@ -50,11 +87,16 @@ function json_loop(obj,idx){
 	var output=style_bracket_start(type)+"<br/>";
 	$.each(obj,function(k,v){
 		if(typeof(v) == 'object' && v!=null){
-			output += json_deep(idx)+style_prop(k)+":";
+			if(type!='array'){
+				output += json_deep(idx)+style_prop(k)+":";
+			}
 			output += json_loop(v,++idx);
 			--idx;
 		} else {
-			output += json_deep(idx)+style_prop(k)+":"+style_val(v)+",<br/>";
+			if(type!='array'){
+				output += json_deep(idx)+style_prop(k)+":";
+			}
+			output += style_val(v)+",<br/>";
 		}
  	});
  	
