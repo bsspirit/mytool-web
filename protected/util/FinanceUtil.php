@@ -27,18 +27,20 @@ class FinanceUtil{
 	
 	public static function pay_type($type){
 		$str='';
-		switch($type){
-			case 'input':$str="收入";break;
-			case 'output':$str="支出";break;
+		foreach(FinanceUtil::$balance_pay_type as $pay){
+			if($pay["id"] == $type){
+				$str=$pay["name"];
+			}
 		}
 		return $str;
 	}
 	
 	public static function pay_mode($mode){
 		$str='';
-		switch($mode){
-			case 'cash':$str="现金";break;
-			case 'visa':$str="信用卡";break;
+		foreach(FinanceUtil::$balance_pay_mode as $pay){
+			if($pay["id"] == $mode){
+				$str=$pay["name"];
+			}
 		}
 		return $str;
 	}

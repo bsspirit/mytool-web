@@ -37,8 +37,8 @@ CREATE TABLE t_finance_balance(
 	id int primary key auto_increment,
 	date int not null,
 	money float not null default 0,
-	pay_type enum('input','output'),
-	pay_mode enum('cash','visa'),
+	pay_type varchar(16) null,
+	pay_mode varchar(16) null,
 	description varchar(512) null,
 	create_time TIMESTAMP default now()
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
