@@ -29,8 +29,6 @@ function json_http(){
 	    success: function(a,b,c){},
 	    error: function(a,b,c){}
 	});
-	
-	
 }
 
 function jsonp_http_callback(obj){

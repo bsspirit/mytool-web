@@ -2,8 +2,10 @@
 class FinanceUtil{
 	
 	public static $balance_pay_type = array(
-		array("id"=>"input","name"=>"收入"),
 		array("id"=>"output","name"=>"支出"),
+		array("id"=>"input","name"=>"收入"),
+		array("id"=>"borrow","name"=>"借"),
+		array("id"=>"repay","name"=>"还"),
 	);
 	
 	public static $balance_pay_mode = array(
