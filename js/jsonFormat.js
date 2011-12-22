@@ -85,15 +85,11 @@ function json_loop(obj,idx){
 	var output=style_bracket_start(type)+"<br/>";
 	$.each(obj,function(k,v){
 		if(typeof(v) == 'object' && v!=null){
-			if(type!='array'){
-				output += json_deep(idx)+style_prop(k)+":";
-			}
+			output += json_deep(idx) + ((type!='array')?(style_prop(k)+":"):"");
 			output += json_loop(v,++idx);
 			--idx;
 		} else {
-			if(type!='array'){
-				output += json_deep(idx)+style_prop(k)+":";
-			}
+			output += json_deep(idx) + ((type!='array')?(style_prop(k)+":"):"");
 			output += style_val(v)+",<br/>";
 		}
  	});

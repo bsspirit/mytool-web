@@ -1,4 +1,4 @@
-//window.onload = weatherHandler();
+window.onload = weatherHandler();
 $('#weather').hide();
 
 $("#click_weather").toggle(function(){
