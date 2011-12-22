@@ -26,7 +26,7 @@ class WebsiteController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','postSave','postDel','JSONNavigator','JSONWebsite','JSONCatalog'),
+				'actions'=>array('index','index2','postSave','postDel','JSONNavigator','JSONWebsite','JSONCatalog'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -176,6 +176,11 @@ class WebsiteController extends Controller
 	{
 		$this->render('index',array());
 	}
+	
+	public function actionIndex2()
+	{
+		$this->render('index2',array());
+	}
 
 	/**
 	 * Displays a particular model.
@@ -258,13 +263,13 @@ class WebsiteController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex2()
-	{
-		$dataProvider=new CActiveDataProvider('Website');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
+//	public function actionIndex()
+//	{
+//		$dataProvider=new CActiveDataProvider('Website');
+//		$this->render('index',array(
+//			'dataProvider'=>$dataProvider,
+//		));
+//	}
 
 	/**
 	 * Manages all models.

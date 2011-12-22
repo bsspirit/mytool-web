@@ -1,17 +1,8 @@
-<?php
-$this->breadcrumbs=array(
-	'Websites',
-);
+<div id="menu" class="view"></div>
+<div id="navigator" class="view"></div>
 
-$this->menu=array(
-	array('label'=>'Create Website', 'url'=>array('create')),
-	array('label'=>'Manage Website', 'url'=>array('admin')),
-);
-?>
+<script src="/js/module/website/navigator.js"></script>
+<script src="/js/module/website/navigator_action.js"></script>
 
-<h1>Websites</h1>
 
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-)); ?>
+

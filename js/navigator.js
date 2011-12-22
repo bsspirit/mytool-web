@@ -75,10 +75,12 @@ function getCatalogList(){
 }
 
 /*=============功能按键====================*/
+//@
 function function_catalog(){
 	navigatorHandler();
 }
 
+//@
 function function_add(){
 	$('#navigatorDialog').dialog('open');
 	render_add1();

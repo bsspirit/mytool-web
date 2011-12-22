@@ -1,3 +1,9 @@
+<div id="menu" class="view"></div>
+
+<script src="/js/module/website/navigator.js"></script>
+<script src="/js/module/website/navigator_action.js"></script>
+
+
 <div class="view">
 	<a href="javascript:void(0);" onclick="function_catalog()">分类</a>
 	<a href="javascript:void(0);" onclick="function_add()">增加</a>
@@ -24,3 +30,5 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
 </div>
 
 <script src="/js/navigator.js"></script>
+
+
