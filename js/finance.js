@@ -124,3 +124,19 @@ function function_output_select(){
 		 data:{pay_type:"output"}
 	});
 }
+
+function function_borrow_select(){
+	$.fn.yiiGridView.update('finance-balance-grid',{
+		 type:'POST',
+		 url:$(this).attr('href'),
+		 data:{pay_type:"borrow"}
+	});
+}
+
+function function_repay_select(){
+	$.fn.yiiGridView.update('finance-balance-grid',{
+		 type:'POST',
+		 url:$(this).attr('href'),
+		 data:{pay_type:"repay"}
+	});
+}
