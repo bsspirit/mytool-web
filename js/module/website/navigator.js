@@ -67,3 +67,10 @@ function render_add3(dobj){
 	$('#dialog').show();
 }
 
+function render_edit(dobj){
+	var obj = {'page':'edit','obj':dobj, 'cats':g['cats']};
+	var html = new EJS({url:'/js/module/website/template/dialog.ejs'}).render(obj);
+	$('#dialog').html(html);
+	$('#dialog').dialog({title:'修改网站','modal':true,'width':550,'height':600});
+	$('#dialog').show();
+}

@@ -27,7 +27,7 @@ class WebsiteController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','index2','postSave','postSaveCatalog','postDel',
-								'JSONNavigator','JSONWebsite','JSONCatalog','JSONWins'),
+								'JSON','JSONNavigator','JSONWebsite','JSONCatalog','JSONWins'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -167,12 +167,19 @@ class WebsiteController extends Controller
 	public function actionPostSave(){
 		$json=array('success'=>false);
 		if(Yii::app()->request->isPostRequest){
-			$model=new Website;
+			$model = isset($_POST['id'])?$this->loadModel($_POST['id']):new Website;
 			$model['title']=$_POST['title'];
-			$model['image']=$_POST['image'];
 			$model['cid']=$_POST['catalog'];
-			$model['icon']=$_POST['icon'];
-			$model['url']=substr($_POST['url'],7);
+			
+			if(isset($_POST['icon'])){
+				$model['icon']=$_POST['icon'];
+			}
+			if(isset($_POST['image'])){
+				$model['image']=$_POST['image'];
+			}
+			if(isset($_POST['url'])){
+				$model['url']=substr($_POST['url'],7);
+			}
 			if($model->save(false)){
 				$json['success']=true;	
 			} 
@@ -206,6 +213,10 @@ class WebsiteController extends Controller
 		Yii::app()->end();
 	}
 	
+	public function actionJSON($id){
+		echo $this->jsonp($this->loadModel($id));
+		Yii::app()->end();
+	}
 	
 	
 	public function actionIndex()
@@ -346,5 +357,9 @@ class WebsiteController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	private function jsonp($json){
+		return isset($_GET['callback'])?($_GET['callback']. "(". CJSON::encode($json) .")"):CJSON::encode($json);
 	}
 }

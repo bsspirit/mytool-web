@@ -3,10 +3,12 @@
 	<ul>
 	<% for(var i=0; i<wins.length; i++) {%>
 	<li class="l">
-	<div class="bar" style="display: none;">
-		<img src="/css/update.png">
+	<div class="bar" style="display:none;">
+		<a onclick="click_update(<%=wins[i].id%>)" href="javascript:void(0);">
+			<img src="/css/update.png"/>
+		</a>
 		<a onclick="submit_delete(<%=wins[i].id%>)" href="javascript:void(0);">
-		<img src="/css/delete.png">
+			<img src="/css/delete.png"/>
 		</a>
 	</div>
 	

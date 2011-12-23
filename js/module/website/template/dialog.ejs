@@ -31,3 +31,18 @@
 <p><input type="button" value="提交" class="w80" onclick="submit_add3(this)"/></p>
 </form>
 <% } %>
+
+<% if(page == 'edit' ){ %>
+<form id="navigator_edit">
+<p>网址：<%=obj.url%>&nbsp;&nbsp;<img src="<%=obj.icon%>" class="icon"/></p>
+<p>分类：<%=select_tag('catalog', obj.cid, cats) %></p>
+<p>标题：<input type="text" name="title" class="w300" value="<%=obj.title%>"/></p>
+<p>截图：<br/>
+<img src="<%=obj.image%>" width="480px"/>
+</p>
+<hr/><p>
+<input type="hidden" name="id" value="<%=obj.id%>"/>
+<input type="button" name="submit" value="修改" class="w80" onclick="submit_update()"/>
+</p>
+</form>
+<% } %>

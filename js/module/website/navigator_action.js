@@ -43,6 +43,17 @@ function click_back(){
 	render_add1();
 }
 
+function click_update(id){
+	var url ="/website/JSON/"+id;
+	$.ajax({
+	    url: url,
+	    type:"get",
+	    dataType:"jsonp",
+        jsonp:"callback",
+        jsonpCallback: "render_edit"
+	});
+}
+
 function submit_add1(){
 	var url = $('#navigator_add1 input[name="url"]').val();
 	$.ajax({
@@ -104,6 +115,27 @@ function submit_add3(){
 	    data:form,
 	    success: function(a,b,c){
 	    	render_menu();
+	    	$('#dialog').dialog('close');
+	    	$('#dialog').hide();
+	    },
+	    error: function(a,b,c){
+	    	alert(a);
+	    }
+	});
+}
+
+function submit_update(){
+	var form = {};
+	$('#navigator_edit :input').each(function(k,v){
+	 	form[v.name]=v.value;
+	});
+	
+	$.ajax({
+	    url: "/website/postSave",
+	    type:"post",
+	    data:form,
+	    success: function(a,b,c){
+	    	render_wins();
 	    	$('#dialog').dialog('close');
 	    	$('#dialog').hide();
 	    },
