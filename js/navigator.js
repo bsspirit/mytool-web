@@ -61,6 +61,7 @@ function jsonpCallback(obj){
 	click_fade();
 }
 
+//@
 function getCatalogList(){
 	$.ajax({
 	    url: "/website/JSONCatalog",

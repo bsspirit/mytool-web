@@ -1,3 +1,10 @@
+标签:
+<% for(var i=0; i<cats.length; i++) {%>
+   	<a href='javascript:void(0);' onclick='click_menu(this)' mid="<%= cats[i].id %>" title="<%= cats[i].name%>"><%= cats[i].name%></a>   
+<% } %>
+<br/><br/>
+
+功能:
 <% for(var i=0; i<btns.length; i++) {%>
-   	<a href='javascript:void(0);' onclick='click_menu("<%= btns[i][1] %>")'><%= btns[i][0]%></a>   
+   	<a href='javascript:void(0);' onclick='click_btn("<%= btns[i].action %>")'><%= btns[i].label%></a>   
 <% } %>

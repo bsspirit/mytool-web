@@ -26,7 +26,8 @@ class WebsiteController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','index2','postSave','postDel','JSONNavigator','JSONWebsite','JSONCatalog'),
+				'actions'=>array('index','index2','postSave','postDel',
+								'JSONNavigator','JSONWebsite','JSONCatalog','JSONWins'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -95,7 +96,29 @@ class WebsiteController extends Controller
 			);
 			array_push($j_cats, $line);
 		}
-		echo $_GET['callback'] . "(". CJSON::encode($j_cats) .")";
+		echo isset($_GET['callback'])?($_GET['callback']. "(". CJSON::encode($j_cats) .")"):CJSON::encode($j_cats);
+		Yii::app()->end();
+	}
+	
+	/*
+	* 分类的网站
+	*/
+	public function actionJSONWins($cid=null){
+		$webs=Website::model()->findAll('cid=:cid',array(':cid'=>$cid));
+		$j_wins = array();
+		foreach ($webs as $row){
+			$line = array(
+				'id'=>$row['id'],
+				'url'=>$row['url'],
+				'image'=>$row['image'],
+				'title'=>$row['title'],
+				'icon'=>$row['icon'],
+				'cid'=>$row['cid']
+			);
+			array_push($j_wins, $line);
+		}
+		
+		echo isset($_GET['callback'])?($_GET['callback']. "(". CJSON::encode($j_wins) .")"):CJSON::encode($j_wins);
 		Yii::app()->end();
 	}
 	
