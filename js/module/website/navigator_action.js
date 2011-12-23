@@ -7,8 +7,11 @@ function click_menu(obj){
 function click_btn(obj){
 	var tmp = $(obj);
 	switch(tmp.attr('action')){
-	case 'add':
+	case 'add_website':
 		render_add1();
+		break;
+	case 'add_catalog':
+		render_add3();
 		break;
 	}
 }
@@ -87,5 +90,25 @@ function submit_delete(id){
 		    }
 		});
 	}
+}
+
+function submit_add3(){
+	var form = {};
+	$('#catalog_add :input').each(function(k,v){
+	 	form[v.name]=v.value;
+	});
 	
+	$.ajax({
+	    url: "/website/postSaveCatalog",
+	    type:"post",
+	    data:form,
+	    success: function(a,b,c){
+	    	render_menu();
+	    	$('#dialog').dialog('close');
+	    	$('#dialog').hide();
+	    },
+	    error: function(a,b,c){
+	    	alert(a);
+	    }
+	});
 }

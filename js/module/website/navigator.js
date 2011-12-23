@@ -19,7 +19,8 @@ function render_menu(){
 		g['cats']=data;
 		var obj = {
 			cats:data,
-			btns:[{"action":"add","label":"增加站点"}]
+			btns:[{"action":"add_website","label":"增加站点"},
+			      {"action":"add_catalog","label":"增加分类"}]
 		};
 		
 		var menu = new EJS({url:'/js/module/website/template/menu.ejs'}).render(obj);
@@ -55,6 +56,14 @@ function render_add2(dobj){
 	var html = new EJS({url:'/js/module/website/template/dialog.ejs'}).render(obj);
 	$('#dialog').html(html);
 	$('#dialog').dialog({title:'增加网站-2','modal':true,'width':550,'height':600});
+	$('#dialog').show();
+}
+
+function render_add3(dobj){
+	var obj = {'page':'add3'};
+	var html = new EJS({url:'/js/module/website/template/dialog.ejs'}).render(obj);
+	$('#dialog').html(html);
+	$('#dialog').dialog({title:'增加分类','modal':true,'width':400,'height':160});
 	$('#dialog').show();
 }
 

@@ -26,7 +26,7 @@ class WebsiteController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','index2','postSave','postDel',
+				'actions'=>array('index','index2','postSave','postSaveCatalog','postDel',
 								'JSONNavigator','JSONWebsite','JSONCatalog','JSONWins'),
 				'users'=>array('@'),
 			),
@@ -176,6 +176,19 @@ class WebsiteController extends Controller
 			if($model->save(false)){
 				$json['success']=true;	
 			} 
+		}
+		echo CJSON::encode($json);
+		Yii::app()->end();
+	}
+	
+	public function actionPostSaveCatalog(){
+		$json=array('success'=>false);
+		if(Yii::app()->request->isPostRequest){
+			$model=new WebsiteCatalog;
+			$model['name']=$_POST['name'];
+			if($model->save(false)){
+				$json['success']=true;
+			}
 		}
 		echo CJSON::encode($json);
 		Yii::app()->end();
