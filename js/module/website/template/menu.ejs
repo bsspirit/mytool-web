@@ -6,5 +6,5 @@
 
 功能:
 <% for(var i=0; i<btns.length; i++) {%>
-   	<a href='javascript:void(0);' onclick='click_btn("<%= btns[i].action %>")'><%= btns[i].label%></a>   
+   	<a href='javascript:void(0);' onclick='click_btn(this)' action="<%= btns[i].action %>"><%= btns[i].label%></a>   
 <% } %>

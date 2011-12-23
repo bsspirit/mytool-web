@@ -1,0 +1,26 @@
+<% if(page == 'add1' ){ %>
+<form id="navigator_add1">
+<p>输入URL：<input type="text" name="url" class="w400" value="http://"/></p>
+<p><input type="button" value="提交" class="w80" onclick="submit_add1(this)"/></p>
+</form>
+<% } %>
+
+<% if(page == 'add2' ){ %>
+<form id="navigator_add2">
+<p>网址：<%=obj.url%>&nbsp;&nbsp;<img src="<%=obj.icon%>" class="icon"/></p>
+<p>分类：<%=select_tag('catalog', 1, cats) %></p>
+<p>标题：<input type="text" name="title" class="w300" value="<%=obj.title%>"/></p>
+
+<p>截图：<br/>
+<img src="<%=obj.image%>" width="480px"/>
+</p>
+<hr/><p>
+<input type="button" name="back" value="返回" class="w80" onclick="click_back()"/>
+<input type="button" name="submit" value="提交" class="w80" onclick="submit_add2()"/>
+		
+<input type="hidden" name="url" value="<%=obj.url%>"/>
+<input type="hidden" name="image" value="<%=obj.image%>"/>
+<input type="hidden" name="icon" value="<%=obj.icon%>"/>
+</p>
+</form>
+<% } %>

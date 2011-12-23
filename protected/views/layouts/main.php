@@ -14,6 +14,7 @@
 	<script src="/js/lib/jquery/jquery-ui-1.8.16.min.js"></script>
 	<script src="/js/lib/jquery/jquery.ba-bbq.js"></script>
 	<script src="/js/lib/ejs/ejs.js"></script>
+	<script src="/js/lib/ejs/view.js"></script>
 	<script src="/js/mylib.js"></script>
 </head>
 <body>

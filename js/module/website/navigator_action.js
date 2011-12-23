@@ -1,6 +1,16 @@
 function click_menu(obj){
-	var o = {"id":$(obj).attr('mid'), "name":$(obj).attr('title')}
+	var tmp = $(obj);
+	var o = {"id":tmp.attr('mid'), "name":tmp.attr('title')}
 	render_wins(o);
+}
+
+function click_btn(obj){
+	var tmp = $(obj);
+	switch(tmp.attr('action')){
+	case 'add':
+		render_add1();
+		break;
+	}
 }
 
 function hover_bar(){
@@ -24,4 +34,58 @@ function click_fade(){
 			$(this).next().fadeIn();
 		});
 	});
+}
+
+function click_back(){
+	render_add1();
+}
+
+function submit_add1(){
+	var url = $('#navigator_add1 input[name="url"]').val();
+	$.ajax({
+	    url: "/website/JSONWebsite",
+	    data:{"url":url},
+	    type:"get",
+	    dataType:"jsonp",
+        jsonp:"callback",
+        jsonpCallback: "render_add2"
+	});
+}
+
+function submit_add2(){
+	var form = {};
+	$('#navigator_add2 :input').each(function(k,v){
+	 	form[v.name]=v.value;
+	});
+	
+	$.ajax({
+	    url: "/website/postSave",
+	    type:"post",
+	    data:form,
+	    success: function(a,b,c){
+	    	render_wins();
+	    	$('#dialog').dialog('close');
+	    	$('#dialog').hide();
+	    },
+	    error: function(a,b,c){
+	    	alert(a);
+	    }
+	});
+}
+
+function submit_delete(id){
+	if(confirm("确认删除?")){
+		$.ajax({
+		    url: "/website/postDel",
+		    data:{id:id},
+		    type:"post",
+		    success: function(a,b,c){
+		    	render_wins();
+		    },
+		    error: function(a,b,c){
+		    	alert(a);
+		    }
+		});
+	}
+	
 }
