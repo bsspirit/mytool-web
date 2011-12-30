@@ -4,4 +4,4 @@
 
 <div id="desktop" class="view"></div>
 
-<script src="/js/dict.js"></script>
+<script src="/js/module/dict/dict.js"></script>
