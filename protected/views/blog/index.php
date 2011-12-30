@@ -16,6 +16,6 @@ $this->menu=array(
 
 <div id="desktop" class="view"></div>
 
-<script src="/js/editor/kindeditor-min.js"></script>
-<script src="/js/editor/zh_CN.js"></script>
-<script src="/js/blog.js"></script>
+<script src="/js/lib/kindeditor/kindeditor-min.js"></script>
+<script src="/js/lib/kindeditor/zh_CN.js"></script>
+<script src="/js/module/blog/blog.js"></script>
