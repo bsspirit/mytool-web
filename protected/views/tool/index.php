@@ -6,5 +6,5 @@
 <div id="weather" class="view"></div>
 <div id="jsonFormat" class="view"></div>
 
-<script src="/js/weather.js"></script>
-<script src="/js/jsonFormat.js"></script>
+<script src="/js/module/tool/weather.js"></script>
+<script src="/js/module/tool/jsonFormat.js"></script>
