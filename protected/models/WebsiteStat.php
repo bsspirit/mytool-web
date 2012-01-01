@@ -1,21 +1,19 @@
 <?php
 
 /**
- * This is the model class for table "t_website".
+ * This is the model class for table "t_website_stat".
  *
- * The followings are the available columns in table 't_website':
+ * The followings are the available columns in table 't_website_stat':
  * @property integer $id
- * @property string $url
- * @property integer $grade
- * @property integer $cid
- * @property string $image
- * @property string $create_time
+ * @property integer $wid
+ * @property integer $type
+ * @property integer $count
  */
-class Website extends CActiveRecord
+class WebsiteStat extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return Website the static model class
+	 * @return WebsiteStat the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -27,7 +25,7 @@ class Website extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 't_website';
+		return 't_website_stat';
 	}
 
 	/**
@@ -38,22 +36,23 @@ class Website extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('url, create_time', 'required'),
-			array('grade, cid', 'numerical', 'integerOnly'=>true),
-			array('url', 'length', 'max'=>128),
-			array('image', 'length', 'max'=>256),
+			array('wid', 'required'),
+			array('wid, type, count', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, url, grade, cid, image, create_time, title, icon', 'safe', 'on'=>'search'),
+			array('id, wid, type, count', 'safe', 'on'=>'search'),
 		);
 	}
 
+	/**
+	 * @return array relational rules.
+	 */
 	public function relations()
 	{
+		// NOTE: you may need to adjust the relation name and the related
+		// class name for the relations automatically generated below.
 		return array(
-			'cat' => array(self::BELONGS_TO,'WebsiteCatalog','cid'),
-			'stat' => array(self::HAS_ONE, 'WebsiteStat', 'wid', 'order'=>'stat.count DESC',
-			),
+			'website' => array(self::BELONGS_TO,'Website','wid'),
 		);
 	}
 
@@ -64,11 +63,9 @@ class Website extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'url' => 'Url',
-			'grade' => 'Grade',
-			'cid' => 'Cid',
-			'image' => 'Image',
-			'create_time' => 'Create Time',
+			'wid' => 'Wid',
+			'type' => 'Type',
+			'count' => 'Count',
 		);
 	}
 
@@ -84,11 +81,9 @@ class Website extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('url',$this->url,true);
-		$criteria->compare('grade',$this->grade);
-		$criteria->compare('cid',$this->cid);
-		$criteria->compare('image',$this->image,true);
-		$criteria->compare('create_time',$this->create_time,true);
+		$criteria->compare('wid',$this->wid);
+		$criteria->compare('type',$this->type);
+		$criteria->compare('count',$this->count);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

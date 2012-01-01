@@ -10,6 +10,7 @@ function init(){
 	render_dialog();
 	render_menu();
 	render_wins();
+	
 }
 
 
@@ -36,6 +37,7 @@ function render_wins(cobj){
 		var html = new EJS({url:'/js/module/website/template/wins.ejs'}).render(obj);
 		$('#navigator').html(html);
 		hover_bar();
+		render_click();
 	});
 }
 
@@ -73,4 +75,18 @@ function render_edit(dobj){
 	$('#dialog').html(html);
 	$('#dialog').dialog({title:'修改网站','modal':true,'width':550,'height':600});
 	$('#dialog').show();
+}
+
+
+function render_click(){
+	$('.win .open').each(function(){
+		var obj = $(this);
+		$(this).click(function(){
+			$.ajax({
+			    url: "/website/addClick/wid/"+obj.attr('wid'),
+			    type:"get"
+			});
+			window.open(obj.attr('url'), '_blank');
+		});
+	});
 }

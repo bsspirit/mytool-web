@@ -27,6 +27,11 @@ insert into t_website_catalog(id,name,seq) values(1,"常用站点",1);
 insert into t_website_catalog(id,name,seq) values(2,"我的网站",3);
 insert into t_website_catalog(id,name,seq) values(3,"本地站点",2);
 
+insert into t_website_stat(wid,type,count) values(2,1,3);
+insert into t_website_stat(wid,type,count) values(3,1,2);
+insert into t_website_stat(wid,type,count) values(4,1,1);
+insert into t_website_stat(wid,type,count) values(5,1,4);
+
 insert into t_website_order(wid,score) values(1,10);
 insert into t_website_order(wid,score) values(2,100);
 insert into t_website_order(wid,score) values(3,99);

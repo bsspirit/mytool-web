@@ -1,12 +1,12 @@
 <?php
 $this->breadcrumbs=array(
-	'Websites'=>array('index'),
+	'Website Stats'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Website', 'url'=>array('index')),
-	array('label'=>'Create Website', 'url'=>array('create')),
+	array('label'=>'List WebsiteStat', 'url'=>array('index')),
+	array('label'=>'Create WebsiteStat', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -15,7 +15,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('website-grid', {
+	$.fn.yiiGridView.update('website-stat-grid', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -23,7 +23,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Websites</h1>
+<h1>Manage Website Stats</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -38,16 +38,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'website-grid',
+	'id'=>'website-stat-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'url',
-		'grade',
-		'cid',
-		'image',
-		'create_time',
+		'wid',
+		'type',
+		'count',
 		array(
 			'class'=>'CButtonColumn',
 		),

@@ -14,17 +14,17 @@
 	
 	<div class="win">
 		<div class="pic">
-			<a target="_blank" href="http://<%=wins[i].url%>">
-				<img class="preview" src="<%=wins[i].image%>"/>
+			<a href="javascript:void(0);">
+				<img class="preview open" src="<%=wins[i].image%>" url="http://<%=wins[i].url%>" wid="<%=wins[i].id%>"/>
 			</a>
 		</div>
 		<div class="info">
 			<img class="icon" src="<%=wins[i].icon%>"/>
-			<a target="_blank" href="http://<%=wins[i].url%>">
-				<span class="title"><%=wins[i].title%></span>
+			<a href="javascript:void(0);">
+				<span class="title open" url="http://<%=wins[i].url%>" wid="<%=wins[i].id%>"><%=wins[i].title%></span>
 			</a><br>
-			<a target="_blank" href="http://<%=wins[i].url%>">
-				<span class="url"><%=wins[i].url%></span>
+			<a href="javascript:void(0);">
+				<span class="url open" url="http://<%=wins[i].url%>" wid="<%=wins[i].id%>"><%=wins[i].url%></span>
 			</a>
 		</div>
 	</div>

@@ -33,6 +33,14 @@ CREATE TABLE t_website_order(
 	create_time TIMESTAMP default now()
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE t_website_stat(
+	id int primary key auto_increment,
+	wid int not null unique,
+	type int not null default 0, 
+	count int default 1
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 CREATE TABLE t_finance_balance(
 	id int primary key auto_increment,
 	date int not null,

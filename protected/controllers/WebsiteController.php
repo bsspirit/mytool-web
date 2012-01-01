@@ -26,8 +26,10 @@ class WebsiteController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','index2','postSave','postSaveCatalog','postDel',
-								'JSON','JSONNavigator','JSONWebsite','JSONCatalog','JSONWins'),
+				'actions'=>array('index',
+								'postSave','postSaveCatalog','postDel',
+								'JSON','JSONNavigator','JSONWebsite','JSONCatalog','JSONWins',
+								'addClick'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -70,7 +72,7 @@ class WebsiteController extends Controller
 				}
 			}
 		}
-		echo $_GET['callback'] . "(". CJSON::encode($j_cats) .")";
+		echo $this->jsonp($j_cats);
 		Yii::app()->end(); 
 	}
 	
@@ -79,7 +81,7 @@ class WebsiteController extends Controller
 	 */
 	public function actionJSONWebsite($url){
 		$header = $this->getHtml($url);
-		echo $_GET['callback'] . "(". CJSON::encode($header) .")";
+		echo $this->jsonp($header);
 		Yii::app()->end();
 	}
 	
@@ -96,7 +98,7 @@ class WebsiteController extends Controller
 			);
 			array_push($j_cats, $line);
 		}
-		echo isset($_GET['callback'])?($_GET['callback']. "(". CJSON::encode($j_cats) .")"):CJSON::encode($j_cats);
+		echo $this->jsonp($j_cats);
 		Yii::app()->end();
 	}
 	
@@ -104,21 +106,30 @@ class WebsiteController extends Controller
 	* 分类的网站
 	*/
 	public function actionJSONWins($cid=null){
-		$webs=Website::model()->findAll('cid=:cid',array(':cid'=>$cid));
-		$j_wins = array();
-		foreach ($webs as $row){
-			$line = array(
-				'id'=>$row['id'],
-				'url'=>$row['url'],
-				'image'=>$row['image'],
-				'title'=>$row['title'],
-				'icon'=>$row['icon'],
-				'cid'=>$row['cid']
-			);
-			array_push($j_wins, $line);
+		if(!empty($cid)){
+			if($cid==1){//常用站点
+				$criteria = new CDbCriteria;
+	    		$criteria->compare('stat.type', '1', true);//计算stat.type=click(1)
+	   			$criteria->limit = 10; 
+				$webs=Website::model()->with('stat')->findAll($criteria);
+				
+			} else{
+				$webs=Website::model()->findAll('cid=:cid',array(':cid'=>$cid));
+			}
+			$j_wins = array();
+			foreach ($webs as $row){
+				$line = array(
+					'id'=>$row['id'],
+					'url'=>$row['url'],
+					'image'=>$row['image'],
+					'title'=>$row['title'],
+					'icon'=>$row['icon'],
+					'cid'=>$row['cid']
+				);
+				array_push($j_wins, $line);
+			}
 		}
-		
-		echo isset($_GET['callback'])?($_GET['callback']. "(". CJSON::encode($j_wins) .")"):CJSON::encode($j_wins);
+		echo $this->jsonp($j_wins);
 		Yii::app()->end();
 	}
 	
@@ -224,113 +235,22 @@ class WebsiteController extends Controller
 		$this->render('index',array());
 	}
 	
-	public function actionIndex2()
-	{
-		$this->render('index2',array());
-	}
-
 	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
+	 * 增加点击统计
 	 */
-	public function actionView($id)
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
-	}
-
-	/**
-	 * Creates a new model.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
-	 */
-	public function actionCreate()
-	{
-		$model=new Website;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Website']))
-		{
-			$model->attributes=$_POST['Website'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+	public function actionAddClick($wid){
+		$criteria = new CDbCriteria;
+		$criteria->compare('wid', $wid, true);
+		$stat=WebsiteStat::model()->find($criteria);
+		if(empty($stat)){
+			$stat=new WebsiteStat;
+			$stat->type=1;
+			$stat->wid=$wid;
+		} else {
+			$stat->count = $stat->count+1; 
 		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
-	}
-
-	/**
-	 * Updates a particular model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param integer $id the ID of the model to be updated
-	 */
-	public function actionUpdate($id)
-	{
-		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Website']))
-		{
-			$model->attributes=$_POST['Website'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
-	}
-
-	/**
-	 * Deletes a particular model.
-	 * If deletion is successful, the browser will be redirected to the 'admin' page.
-	 * @param integer $id the ID of the model to be deleted
-	 */
-	public function actionDelete($id)
-	{
-		if(Yii::app()->request->isPostRequest)
-		{
-			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
-
-			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-			if(!isset($_GET['ajax']))
-				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-		}
-		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
-	}
-
-	/**
-	 * Lists all models.
-	 */
-//	public function actionIndex()
-//	{
-//		$dataProvider=new CActiveDataProvider('Website');
-//		$this->render('index',array(
-//			'dataProvider'=>$dataProvider,
-//		));
-//	}
-
-	/**
-	 * Manages all models.
-	 */
-	public function actionAdmin()
-	{
-		$model=new Website('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Website']))
-			$model->attributes=$_GET['Website'];
-
-		$this->render('admin',array(
-			'model'=>$model,
-		));
+		$stat->save();
+		Yii::app()->end();
 	}
 
 	/**
