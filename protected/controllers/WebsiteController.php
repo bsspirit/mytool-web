@@ -72,7 +72,7 @@ class WebsiteController extends Controller
 				}
 			}
 		}
-		echo $this->jsonp($j_cats);
+		echo WebUtil::jsonp($j_cats);
 		Yii::app()->end(); 
 	}
 	
@@ -81,7 +81,7 @@ class WebsiteController extends Controller
 	 */
 	public function actionJSONWebsite($url){
 		$header = $this->getHtml($url);
-		echo $this->jsonp($header);
+		echo WebUtil::jsonp($header);
 		Yii::app()->end();
 	}
 	
@@ -89,7 +89,7 @@ class WebsiteController extends Controller
 	 * 分类下拉列表
 	 */
 	public function actionJSONCatalog($cid=null){
-		$cats=WebsiteCatalog::model()->findAll();
+		$cats=DictTag::model()->findAll();
 		$j_cats = array();
 		foreach ($cats as $cat){
 			$line = array(
@@ -98,7 +98,7 @@ class WebsiteController extends Controller
 			);
 			array_push($j_cats, $line);
 		}
-		echo $this->jsonp($j_cats);
+		echo WebUtil::jsonp($j_cats);
 		Yii::app()->end();
 	}
 	
@@ -129,7 +129,7 @@ class WebsiteController extends Controller
 				array_push($j_wins, $line);
 			}
 		}
-		echo $this->jsonp($j_wins);
+		echo WebUtil::jsonp($j_wins);
 		Yii::app()->end();
 	}
 	
@@ -225,7 +225,7 @@ class WebsiteController extends Controller
 	}
 	
 	public function actionJSON($id){
-		echo $this->jsonp($this->loadModel($id));
+		echo WebUtil::jsonp($this->loadModel($id));
 		Yii::app()->end();
 	}
 	
@@ -278,8 +278,5 @@ class WebsiteController extends Controller
 			Yii::app()->end();
 		}
 	}
-	
-	private function jsonp($json){
-		return isset($_GET['callback'])?($_GET['callback']. "(". CJSON::encode($json) .")"):CJSON::encode($json);
-	}
+
 }

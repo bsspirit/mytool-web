@@ -1,0 +1,19 @@
+<div class="title" id="tag<%=tag.id%>">
+	<span class="name w200"><%=tag.name%></span>
+	<a class="act" onclick="click_dict_add(<%=tag.id%>)" href="javascript:void(0);">Add</a>
+	<form class="form" id="form_dict_<%=tag.id%>" style="display: none;">
+		<input type="text" name="dict_word" class="w150">
+		<a class="act" onclick="submit_dict_add(<%=tag.id%>)" href="javascript:void(0);">Add</a>
+		<a class="act" onclick="submit_dict_del(<%=tag.id%>)" href="javascript:void(0);">Delete</a>
+		<a class="act" onclick="click_dict_cancel(<%=tag.id%>)" href="javascript:void(0);">Cancel</a>
+		<input type="hidden" value="1" name="dict_tag">
+	</form>
+</div>
+
+<ul class="words" id="tw<%=tag.id%>">
+<% for(var i=0; i<words.length; i++) {%>
+	<li><%=words[i].word%></li>
+<% } %>
+</ul>
+
+<div class="c"></div>

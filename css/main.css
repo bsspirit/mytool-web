@@ -279,12 +279,12 @@ div.search-form
 .feed-small{overflow:scroll;overflow-x:hidden;height:200px;}
 
 #dict{}
-#dict .tag{}
-#dict .tag .title{}
-#dict .tag .title .name{font: bold 14px Arial;color: #0066A4;}
-#dict .tag .title .act{margin:0 10px;}
-#dict .tag ul{list-style:none outside none;padding:0;margin:5px 0;}
-#dict .tag ul li{float:left;height:18x;margin:2px 10px;text-align:left;}
+#dict 
+#dict .title{}
+#dict .title .name{font: bold 14px Arial;color: #0066A4;}
+#dict .title .act{margin:0 10px;}
+#dict ul{list-style:none outside none;padding:0;margin:5px 0;}
+#dict ul li{float:left;height:18x;margin:2px 10px;text-align:left;}
 
 #weather {
     width: 280px;
