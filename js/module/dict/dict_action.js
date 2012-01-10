@@ -1,7 +1,8 @@
 function click_menu(obj){
 	var tmp = $(obj);
 	var o = {"id":tmp.attr('mid'), "name":tmp.attr('title')}
-	render_wins(o);
+	g['tag'] = o;
+	render_tags(g['tag']);
 }
 
 function click_btn(obj){
@@ -14,6 +15,17 @@ function click_btn(obj){
 		render_add3();
 		break;
 	}
+}
+
+function click_word(q){
+	var url = "http://www.google.com/dictionary/json?q="+q+"&sl=en&tl=zh-cn&client=suggest";
+	$.ajax({
+	    url: url,
+	    type:"get",
+	    dataType:"jsonp",
+        jsonp:"callback",
+        jsonpCallback: "render_mean"
+	});
 }
 
 function click_dict_add(tag){
@@ -34,7 +46,7 @@ function submit_dict_add(tag){
 	    type:"post",
 	    data:form,
 	    success: function(a,b,c){
-	    	render_tags();
+	    	render_tags(g['tag']);
 	    },
 	    error: function(a,b,c){
 	    	alert('服务器出錯了。');
@@ -52,7 +64,7 @@ function submit_dict_del(tag){
 	    type:"post",
 	    data:form,
 	    success: function(a,b,c){
-	    	render_tags();
+	    	render_tags(g['tag']);
 	    },
 	    error: function(a,b,c){
 	    	alert('服务器出錯了。');

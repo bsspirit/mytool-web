@@ -89,7 +89,7 @@ class WebsiteController extends Controller
 	 * 分类下拉列表
 	 */
 	public function actionJSONCatalog($cid=null){
-		$cats=DictTag::model()->findAll();
+		$cats=WebsiteCatalog::model()->findAll();
 		$j_cats = array();
 		foreach ($cats as $cat){
 			$line = array(

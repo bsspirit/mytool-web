@@ -6,7 +6,7 @@
 		<a class="act" onclick="submit_dict_add(<%=tag.id%>)" href="javascript:void(0);">Add</a>
 		<a class="act" onclick="submit_dict_del(<%=tag.id%>)" href="javascript:void(0);">Delete</a>
 		<a class="act" onclick="click_dict_cancel(<%=tag.id%>)" href="javascript:void(0);">Cancel</a>
-		<input type="hidden" value="1" name="dict_tag">
+		<input type="hidden" name="dict_tag" value="<%=tag.id%>"/>
 	</form>
 </div>
 
